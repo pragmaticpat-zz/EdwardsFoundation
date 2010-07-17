@@ -56,8 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUser.cs" />
-    <Compile Include="UserProfile.cs" />
     <Compile Include="ExamSystem.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
