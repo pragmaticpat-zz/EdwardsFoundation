@@ -36,6 +36,9 @@ namespace JoanCEdwards.DAO
     partial void InsertExam(Exam instance);
     partial void UpdateExam(Exam instance);
     partial void DeleteExam(Exam instance);
+    partial void InsertChoice(Choice instance);
+    partial void UpdateChoice(Choice instance);
+    partial void DeleteChoice(Choice instance);
     #endregion
 		
 		public ExamSystemDataContext() : 
@@ -81,6 +84,14 @@ namespace JoanCEdwards.DAO
 			get
 			{
 				return this.GetTable<Exam>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Choice> Choices
+		{
+			get
+			{
+				return this.GetTable<Choice>();
 			}
 		}
 		
@@ -438,6 +449,140 @@ namespace JoanCEdwards.DAO
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Choice")]
+	public partial class Choice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ChoiceId;
+		
+		private string _Label;
+		
+		private int _Value;
+		
+		private int _SortOrder;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnChoiceIdChanging(int value);
+    partial void OnChoiceIdChanged();
+    partial void OnLabelChanging(string value);
+    partial void OnLabelChanged();
+    partial void OnValueChanging(int value);
+    partial void OnValueChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
+    #endregion
+		
+		public Choice()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChoiceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ChoiceId
+		{
+			get
+			{
+				return this._ChoiceId;
+			}
+			set
+			{
+				if ((this._ChoiceId != value))
+				{
+					this.OnChoiceIdChanging(value);
+					this.SendPropertyChanging();
+					this._ChoiceId = value;
+					this.SendPropertyChanged("ChoiceId");
+					this.OnChoiceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Label", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Label
+		{
+			get
+			{
+				return this._Label;
+			}
+			set
+			{
+				if ((this._Label != value))
+				{
+					this.OnLabelChanging(value);
+					this.SendPropertyChanging();
+					this._Label = value;
+					this.SendPropertyChanged("Label");
+					this.OnLabelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Int NOT NULL")]
+		public int Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int NOT NULL")]
+		public int SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this.OnSortOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SortOrder = value;
+					this.SendPropertyChanged("SortOrder");
+					this.OnSortOrderChanged();
 				}
 			}
 		}
