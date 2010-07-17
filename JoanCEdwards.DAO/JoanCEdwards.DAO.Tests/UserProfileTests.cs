@@ -14,7 +14,8 @@ namespace JoanCEdwards.DAO.Tests
         UserProfile actualProfile;
 
         [SetUp]
-        public void Setup() {
+        public void Setup()
+        {
             db = new ExamSystemDataContext();
             expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
             db.UserProfiles.InsertOnSubmit(expectedProfile);
@@ -31,8 +32,8 @@ namespace JoanCEdwards.DAO.Tests
         public void UserProfile_WhenRetrieved_IsWhatWasStored()
         {
             actualProfile = (from p in db.UserProfiles
-                                where p.UserId == expectedProfile.UserId
-                                select p).First();
+                             where p.UserId == expectedProfile.UserId
+                             select p).First();
 
             AssertThatExpectedProfileEquals(actualProfile);
         }
@@ -44,7 +45,7 @@ namespace JoanCEdwards.DAO.Tests
             actualProfile = (from p in db.UserProfiles
                              where p.UserId == expectedProfile.UserId
                              select p).First();
-            Assert.AreEqual(false,actualProfile.Status);
+            Assert.AreEqual(false, actualProfile.Status);
         }
 
         [Test]
@@ -56,9 +57,23 @@ namespace JoanCEdwards.DAO.Tests
                 db.UserProfiles.InsertOnSubmit(expectedProfile);
                 db.SubmitChanges();
             }
-            Assert.AreEqual(5,db.UserProfiles.Count());
+            Assert.AreEqual(5, db.UserProfiles.Count());
         }
 
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void UserProfile_WhenAddTwoProfilesWithSameEmailAddress_ErrorOccurs()
+        {
+            StoreExpectedProfile();
+            StoreExpectedProfile();
+        }
+
+        private void StoreExpectedProfile()
+        {
+            expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
+            db.UserProfiles.InsertOnSubmit(expectedProfile);
+            db.SubmitChanges();
+        }
 
 
         private void AssertThatExpectedProfileEquals(UserProfile actualProfile)

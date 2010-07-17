@@ -5,10 +5,9 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="FirstName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="UserType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="GradeLevel" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.DeleteUser" Method="DeleteUser">
