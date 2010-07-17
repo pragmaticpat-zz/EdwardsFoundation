@@ -486,8 +486,6 @@ namespace JoanCEdwards.DAO
 		
 		private int _Value;
 		
-		private int _SortOrder;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -498,8 +496,6 @@ namespace JoanCEdwards.DAO
     partial void OnLabelChanged();
     partial void OnValueChanging(int value);
     partial void OnValueChanged();
-    partial void OnSortOrderChanging(int value);
-    partial void OnSortOrderChanged();
     #endregion
 		
 		public Choice()
@@ -563,26 +559,6 @@ namespace JoanCEdwards.DAO
 					this._Value = value;
 					this.SendPropertyChanged("Value");
 					this.OnValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int NOT NULL")]
-		public int SortOrder
-		{
-			get
-			{
-				return this._SortOrder;
-			}
-			set
-			{
-				if ((this._SortOrder != value))
-				{
-					this.OnSortOrderChanging(value);
-					this.SendPropertyChanging();
-					this._SortOrder = value;
-					this.SendPropertyChanged("SortOrder");
-					this.OnSortOrderChanged();
 				}
 			}
 		}

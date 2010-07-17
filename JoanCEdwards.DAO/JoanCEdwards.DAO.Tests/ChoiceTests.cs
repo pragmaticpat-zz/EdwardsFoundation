@@ -21,7 +21,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void Choice_WhenCreated_HasId()
         {
-            var choice = new Choice() { Label = "label", Value  = 10, SortOrder = 1};
+            var choice = new Choice() { Label = "label", Value  = 10};
             db.Choices.InsertOnSubmit(choice);
             db.SubmitChanges();
             Assert.AreEqual(1, choice.ChoiceId);
