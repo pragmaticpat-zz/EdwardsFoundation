@@ -54,7 +54,7 @@ namespace JoanCEdwards.DAO.Tests
         {
             for (int i = 0; i < 4; i++) //one done in setup
             {
-                expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
+                expectedProfile = new UserProfile() { EmailAddress = "email"+i, FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
                 db.UserProfiles.InsertOnSubmit(expectedProfile);
                 db.SubmitChanges();
             }
