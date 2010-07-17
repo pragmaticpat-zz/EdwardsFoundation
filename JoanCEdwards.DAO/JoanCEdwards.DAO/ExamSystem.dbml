@@ -24,4 +24,8 @@
     <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.DeleteExam" Method="DeleteExam">
+    <Parameter Name="ExamId" Parameter="examId" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
