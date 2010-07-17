@@ -72,6 +72,13 @@ namespace JoanCEdwards.DAO
 				return this.GetTable<UserProfile>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DeleteUser")]
+		public int DeleteUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="Int")] System.Nullable<int> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserProfile")]
@@ -92,6 +99,8 @@ namespace JoanCEdwards.DAO
 		
 		private string _GradeLevel;
 		
+		private bool _Status;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -108,6 +117,8 @@ namespace JoanCEdwards.DAO
     partial void OnUserTypeChanged();
     partial void OnGradeLevelChanging(string value);
     partial void OnGradeLevelChanged();
+    partial void OnStatusChanging(bool value);
+    partial void OnStatusChanged();
     #endregion
 		
 		public UserProfile()
@@ -231,6 +242,26 @@ namespace JoanCEdwards.DAO
 					this._GradeLevel = value;
 					this.SendPropertyChanged("GradeLevel");
 					this.OnGradeLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Bit NOT NULL")]
+		public bool Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}
