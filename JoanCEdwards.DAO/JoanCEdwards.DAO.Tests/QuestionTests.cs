@@ -21,7 +21,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void Question_WhenCreated_HasId()
         {
-            var question = new Question() { QuestionCategory = "label", QuestionText = "here is the question text", QuestionType = "M" };
+            var question = new Question() { QuestionCategory = "category", QuestionText = "here is the question text", QuestionType = "M" };
             db.Questions.InsertOnSubmit(question);
             db.SubmitChanges();
             Assert.AreEqual(1, question.QuestionId);
