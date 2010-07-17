@@ -18,7 +18,7 @@ namespace JoanCEdwards.DAO.Tests
         public void Setup()
         {
             db = new ExamSystemDataContext();
-            expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
+            expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S', Password = new string('p',300) };
             db.UserProfiles.InsertOnSubmit(expectedProfile);
             db.SubmitChanges();
         }
@@ -68,6 +68,7 @@ namespace JoanCEdwards.DAO.Tests
             StoreExpectedProfile();
             StoreExpectedProfile();
         }
+
 
         private void StoreExpectedProfile()
         {

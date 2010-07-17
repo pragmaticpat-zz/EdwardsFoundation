@@ -101,6 +101,8 @@ namespace JoanCEdwards.DAO
 		
 		private bool _Status;
 		
+		private string _Password;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -119,6 +121,8 @@ namespace JoanCEdwards.DAO
     partial void OnGradeLevelChanged();
     partial void OnStatusChanging(bool value);
     partial void OnStatusChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
     #endregion
 		
 		public UserProfile()
@@ -262,6 +266,26 @@ namespace JoanCEdwards.DAO
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(300)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
 				}
 			}
 		}

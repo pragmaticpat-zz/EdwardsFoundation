@@ -9,6 +9,7 @@
       <Column Name="UserType" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="GradeLevel" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.DeleteUser" Method="DeleteUser">
