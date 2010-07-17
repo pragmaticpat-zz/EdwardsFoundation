@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EdwardsFoundation.DataAccess
+namespace JoanCEdwards.DAO
 {
     public interface IUser
     {
@@ -12,6 +12,5 @@ namespace EdwardsFoundation.DataAccess
         string EmailAddress { get; set; }
         char UserType { get; set; }
         string GradeLevel { get; set; }
-        int Save();
     }
 }

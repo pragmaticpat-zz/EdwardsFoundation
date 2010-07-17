@@ -42,8 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exam.cs" />
-    <Compile Include="IUser.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="ExamSystemDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
