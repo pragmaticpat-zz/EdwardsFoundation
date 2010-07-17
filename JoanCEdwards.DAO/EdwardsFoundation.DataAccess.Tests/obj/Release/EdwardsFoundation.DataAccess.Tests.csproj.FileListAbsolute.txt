@@ -1,0 +1,13 @@
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation.DataAccess.Tests.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation.DataAccess.Tests.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation.DataAccess.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\nunit.framework.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation.DataAccess.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\nunit.framework.xml
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\obj\Release\EdwardsFoundation.DataAccess.Tests.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\obj\Release\EdwardsFoundation.DataAccess.Tests.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation.mdf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\EdwardsFoundation_log.ldf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\JoanCEdwards.DAO.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess.Tests\bin\Release\JoanCEdwards.DAO.pdb
