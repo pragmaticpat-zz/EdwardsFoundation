@@ -1,0 +1,8 @@
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\bin\Release\EdwardsFoundation.mdf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\bin\Release\EdwardsFoundation_log.ldf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\bin\Release\JoanCEdwards.DAO.dll.config
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\bin\Release\JoanCEdwards.DAO.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\bin\Release\JoanCEdwards.DAO.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\obj\Release\JoanCEdwards.DAO.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO\obj\Release\JoanCEdwards.DAO.pdb

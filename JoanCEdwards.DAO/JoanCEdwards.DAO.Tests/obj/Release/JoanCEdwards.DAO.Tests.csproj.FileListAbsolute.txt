@@ -1,0 +1,13 @@
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\EdwardsFoundation.mdf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\EdwardsFoundation_log.ldf
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\nunit.core.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\nunit.framework.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\nunit.core.interfaces.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.pdb
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\nunit.framework.xml
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\obj\Release\JoanCEdwards.DAO.Tests.dll
+C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\obj\Release\JoanCEdwards.DAO.Tests.pdb
