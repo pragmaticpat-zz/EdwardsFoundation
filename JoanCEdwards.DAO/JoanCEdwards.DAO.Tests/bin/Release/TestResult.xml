@@ -1,33 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.dll" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-07-17" time="17:42:20">
+<test-results name="C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.dll" total="9" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2010-07-17" time="18:08:22">
   <environment nunit-version="2.5.5.10112" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release" machine-name="PATRICKSULL8171" user="Administrator" user-domain="PATRICKSULL8171" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.dll" executed="True" result="Success" success="True" time="2.684" asserts="0">
+  <test-suite type="Assembly" name="C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\JoanCEdwards.DAO.Tests\bin\Release\JoanCEdwards.DAO.Tests.dll" executed="True" result="Success" success="True" time="1.745" asserts="0">
     <results>
-      <test-suite type="Namespace" name="JoanCEdwards" executed="True" result="Success" success="True" time="2.680" asserts="0">
+      <test-suite type="Namespace" name="JoanCEdwards" executed="True" result="Success" success="True" time="1.742" asserts="0">
         <results>
-          <test-suite type="Namespace" name="DAO" executed="True" result="Success" success="True" time="2.680" asserts="0">
+          <test-suite type="Namespace" name="DAO" executed="True" result="Success" success="True" time="1.742" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="2.680" asserts="0">
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="1.742" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="ChoiceTests" executed="True" result="Success" success="True" time="2.246" asserts="0">
+                  <test-suite type="TestFixture" name="ChoiceTests" executed="True" result="Success" success="True" time="1.322" asserts="0">
                     <results>
-                      <test-case name="JoanCEdwards.DAO.Tests.ChoiceTests.Choice_WhenCreated_HasId" executed="True" result="Success" success="True" time="2.238" asserts="1" />
+                      <test-case name="JoanCEdwards.DAO.Tests.ChoiceTests.Choice_WhenCreated_HasId" executed="True" result="Success" success="True" time="1.314" asserts="1" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="ExamTests" executed="True" result="Success" success="True" time="0.211" asserts="0">
+                  <test-suite type="TestFixture" name="ExamTests" executed="True" result="Success" success="True" time="0.162" asserts="0">
                     <results>
-                      <test-case name="JoanCEdwards.DAO.Tests.ExamTests.Exam_WhenCreated_HasAnID" executed="True" result="Success" success="True" time="0.183" asserts="1" />
-                      <test-case name="JoanCEdwards.DAO.Tests.ExamTests.Exam_WhenDeleted_StatusIsFalse" executed="True" result="Success" success="True" time="0.028" asserts="1" />
+                      <test-case name="JoanCEdwards.DAO.Tests.ExamTests.Exam_WhenCreated_HasAnID" executed="True" result="Success" success="True" time="0.135" asserts="1" />
+                      <test-case name="JoanCEdwards.DAO.Tests.ExamTests.Exam_WhenDeleted_StatusIsFalse" executed="True" result="Success" success="True" time="0.027" asserts="1" />
                     </results>
                   </test-suite>
-                  <test-suite type="TestFixture" name="UserProfileTests" executed="True" result="Success" success="True" time="0.222" asserts="0">
+                  <test-suite type="TestFixture" name="QuestionTests" executed="True" result="Success" success="True" time="0.025" asserts="0">
                     <results>
-                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenAddingMultiple_IsTheRightSize" executed="True" result="Success" success="True" time="0.053" asserts="1" />
+                      <test-case name="JoanCEdwards.DAO.Tests.QuestionTests.Question_WhenCreated_HasId" executed="True" result="Success" success="True" time="0.025" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="UserProfileTests" executed="True" result="Success" success="True" time="0.231" asserts="0">
+                    <results>
+                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenAddingMultiple_IsTheRightSize" executed="True" result="Success" success="True" time="0.054" asserts="1" />
                       <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenAddTwoProfilesWithSameEmailAddress_ErrorOccurs" executed="True" result="Success" success="True" time="0.021" asserts="0" />
-                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenDeleted_IsNotRemovedFromTheDatabase" executed="True" result="Success" success="True" time="0.120" asserts="1" />
-                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenRetrieved_IsWhatWasStored" executed="True" result="Success" success="True" time="0.012" asserts="6" />
+                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenDeleted_IsNotRemovedFromTheDatabase" executed="True" result="Success" success="True" time="0.126" asserts="1" />
+                      <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenRetrieved_IsWhatWasStored" executed="True" result="Success" success="True" time="0.013" asserts="6" />
                       <test-case name="JoanCEdwards.DAO.Tests.UserProfileTests.UserProfile_WhenStored_ReturnsId" executed="True" result="Success" success="True" time="0.017" asserts="1" />
                     </results>
                   </test-suite>

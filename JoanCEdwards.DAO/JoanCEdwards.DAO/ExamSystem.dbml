@@ -27,6 +27,14 @@
       <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.Question" Member="Questions">
+    <Type Name="Question">
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuestionCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="QuestionType" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.DeleteUser" Method="DeleteUser">
     <Parameter Name="UserId" Parameter="userId" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />

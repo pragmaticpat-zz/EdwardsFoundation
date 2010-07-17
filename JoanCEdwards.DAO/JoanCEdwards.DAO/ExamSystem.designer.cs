@@ -39,6 +39,9 @@ namespace JoanCEdwards.DAO
     partial void InsertChoice(Choice instance);
     partial void UpdateChoice(Choice instance);
     partial void DeleteChoice(Choice instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
     #endregion
 		
 		public ExamSystemDataContext() : 
@@ -92,6 +95,14 @@ namespace JoanCEdwards.DAO
 			get
 			{
 				return this.GetTable<Choice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Question> Questions
+		{
+			get
+			{
+				return this.GetTable<Question>();
 			}
 		}
 		
@@ -559,6 +570,140 @@ namespace JoanCEdwards.DAO
 					this._Value = value;
 					this.SendPropertyChanged("Value");
 					this.OnValueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Question")]
+	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QuestionId;
+		
+		private string _QuestionCategory;
+		
+		private string _QuestionType;
+		
+		private string _QuestionText;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnQuestionCategoryChanging(string value);
+    partial void OnQuestionCategoryChanged();
+    partial void OnQuestionTypeChanging(string value);
+    partial void OnQuestionTypeChanged();
+    partial void OnQuestionTextChanging(string value);
+    partial void OnQuestionTextChanged();
+    #endregion
+		
+		public Question()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionCategory", DbType="VarChar(50)")]
+		public string QuestionCategory
+		{
+			get
+			{
+				return this._QuestionCategory;
+			}
+			set
+			{
+				if ((this._QuestionCategory != value))
+				{
+					this.OnQuestionCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionCategory = value;
+					this.SendPropertyChanged("QuestionCategory");
+					this.OnQuestionCategoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionType", DbType="NChar(10)")]
+		public string QuestionType
+		{
+			get
+			{
+				return this._QuestionType;
+			}
+			set
+			{
+				if ((this._QuestionType != value))
+				{
+					this.OnQuestionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionType = value;
+					this.SendPropertyChanged("QuestionType");
+					this.OnQuestionTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionText", DbType="NVarChar(MAX)")]
+		public string QuestionText
+		{
+			get
+			{
+				return this._QuestionText;
+			}
+			set
+			{
+				if ((this._QuestionText != value))
+				{
+					this.OnQuestionTextChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionText = value;
+					this.SendPropertyChanged("QuestionText");
+					this.OnQuestionTextChanged();
 				}
 			}
 		}
