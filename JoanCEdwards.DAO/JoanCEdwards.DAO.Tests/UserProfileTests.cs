@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Data.SqlClient;
 
 namespace JoanCEdwards.DAO.Tests
 {
@@ -61,7 +62,7 @@ namespace JoanCEdwards.DAO.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [ExpectedException(typeof(SqlException))]
         public void UserProfile_WhenAddTwoProfilesWithSameEmailAddress_ErrorOccurs()
         {
             StoreExpectedProfile();

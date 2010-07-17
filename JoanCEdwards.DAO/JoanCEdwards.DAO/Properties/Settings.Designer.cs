@@ -33,5 +33,16 @@ namespace JoanCEdwards.DAO.Properties {
                 return ((string)(this["EdwardsFoundationConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Dev\\EdwardsFoundation\\EdwardsFoundat" +
+            "ion.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True")]
+        public string EdwardsFoundationConnectionString1 {
+            get {
+                return ((string)(this["EdwardsFoundationConnectionString1"]));
+            }
+        }
     }
 }
