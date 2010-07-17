@@ -8,7 +8,13 @@ namespace EdwardsFoundation.DataAccess
 {
     public class User : IUser
     {
-        ExamSystemDataContext db = new ExamSystemDataContext();
+        ExamSystemDataContext db;
+
+        public User()
+        {
+            db = new ExamSystemDataContext();
+        }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
