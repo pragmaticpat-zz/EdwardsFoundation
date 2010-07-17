@@ -12,5 +12,6 @@ namespace JoanCEdwards.DAO
         string EmailAddress { get; set; }
         char UserType { get; set; }
         string GradeLevel { get; set; }
+        string Password { get; set; }
     }
 }
