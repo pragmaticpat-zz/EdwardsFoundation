@@ -7,18 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class QuestionChoicesTests
+    public class QuestionChoicesTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
         [Test]
         public void Question_CanHaveOneChoice()
         {
@@ -29,12 +19,6 @@ namespace JoanCEdwards.DAO.Tests
             db.Choices.InsertOnSubmit(choice);
             db.QuestionChoices.InsertOnSubmit(questionchoice);
             Assert.AreEqual(1, question.QuestionChoices.Count);
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

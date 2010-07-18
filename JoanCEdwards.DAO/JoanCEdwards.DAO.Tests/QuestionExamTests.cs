@@ -7,18 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class QuestionExamTests
+    public class QuestionExamTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
         [Test]
         public void Exam_CanHaveOneQuestion()
         {
@@ -33,12 +23,6 @@ namespace JoanCEdwards.DAO.Tests
                               where e.ExamId == exam.ExamId
                               select e).First();
             Assert.AreEqual(1, actualExam.ExamQuestions.Count);
-
-        }
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

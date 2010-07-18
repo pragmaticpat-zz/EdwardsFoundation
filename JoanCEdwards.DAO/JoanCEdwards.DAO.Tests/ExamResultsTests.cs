@@ -7,18 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class ExamResultsTests
+    public class ExamResultsTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
-
         [Test]
         public void ExamResult_CanCreateOneForUser()
         {
@@ -29,12 +19,6 @@ namespace JoanCEdwards.DAO.Tests
             userProfile.ExamResults.Add(new ExamResult() { Exam = exam, UserProfile = userProfile, Status = "not started", MaxScore = 100 });
             db.SubmitChanges();
             Assert.AreEqual(1, db.ExamResults.Count());
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

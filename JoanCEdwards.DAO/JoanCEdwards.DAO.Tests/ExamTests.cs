@@ -7,18 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class ExamTests
+    public class ExamTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
         [Test]
         public void Exam_WhenCreated_HasAnID()
         {
@@ -36,12 +26,6 @@ namespace JoanCEdwards.DAO.Tests
             db.SubmitChanges();
             db.DeleteExam(exam.ExamId);
             Assert.AreEqual(false, exam.Status);
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

@@ -8,18 +8,8 @@ using System.Diagnostics;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class QuestionTests
+    public class QuestionTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
         [Test]
         public void Question_WhenCreated_HasId()
         {
@@ -27,12 +17,6 @@ namespace JoanCEdwards.DAO.Tests
             db.Questions.InsertOnSubmit(question);
             db.SubmitChanges();
             Assert.AreEqual(1, db.Questions.Count());
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

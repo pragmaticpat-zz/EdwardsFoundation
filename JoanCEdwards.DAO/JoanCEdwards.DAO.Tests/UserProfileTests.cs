@@ -8,42 +8,22 @@ using System.Data.SqlClient;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class UserProfileTests
+    public class UserProfileTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
         UserProfile expectedProfile;
         UserProfile actualProfile;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S', Password = new string('p',300) };
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-            db.UserProfiles.InsertOnSubmit(expectedProfile);
-            db.SubmitChanges();
-        }
 
         [Test]
         public void UserProfile_WhenStored_ReturnsId()
         {
+            StoreExpectedProfile();
             Assert.AreEqual(1, db.UserProfiles.Count());
-        }
-
-        [Test]
-        public void UserProfile_WhenRetrieved_IsWhatWasStored()
-        {
-            actualProfile = (from p in db.UserProfiles
-                             where p.UserId == expectedProfile.UserId
-                             select p).First();
-
-            AssertThatExpectedProfileEquals(actualProfile);
         }
 
         [Test]
         public void UserProfile_WhenDeleted_IsNotRemovedFromTheDatabase()
         {
+            StoreExpectedProfile();
             db.DeleteUser(expectedProfile.UserId);
             actualProfile = (from p in db.UserProfiles
                              where p.UserId == expectedProfile.UserId
@@ -54,7 +34,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void UserProfile_WhenAddingMultiple_IsTheRightSize()
         {
-            for (int i = 0; i < 4; i++) //one done in setup
+            for (int i = 0; i < 5; i++) //one done in setup
             {
                 expectedProfile = new UserProfile() { EmailAddress = "email"+i, FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
                 db.UserProfiles.InsertOnSubmit(expectedProfile);
@@ -89,12 +69,5 @@ namespace JoanCEdwards.DAO.Tests
             Assert.AreEqual(expectedProfile.GradeLevel, actualProfile.GradeLevel);
             Assert.AreEqual(expectedProfile.UserType, actualProfile.UserType);
         }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
-        }
-
     }
 }

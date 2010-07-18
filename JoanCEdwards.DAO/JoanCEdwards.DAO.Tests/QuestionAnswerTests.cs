@@ -7,17 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    class QuestionAnswerTests
+    public class QuestionAnswerTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
 
         [Test]
         public void Question_HasOneAnswer_PerUser()
@@ -33,17 +24,11 @@ namespace JoanCEdwards.DAO.Tests
             question.QuestionAnswers.Add(new QuestionAnswer() { Question = question, Exam = exam, UserProfile = expectedProfile, Answer = "answer" });
             db.SubmitChanges();
 
-
             var actualQuestion = (from e in db.Questions
                               where e.QuestionId == question.QuestionId
                               select e).First();
             Assert.AreEqual(1, actualQuestion.QuestionAnswers.Count);
 
-        }
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }

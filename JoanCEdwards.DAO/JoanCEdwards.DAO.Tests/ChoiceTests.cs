@@ -7,18 +7,8 @@ using NUnit.Framework;
 namespace JoanCEdwards.DAO.Tests
 {
     [TestFixture]
-    public class ChoiceTests
+    public class ChoiceTests : DataAccessTestBase
     {
-        ExamSystemDataContext db;
-
-        [SetUp]
-        public void Setup()
-        {
-            db = new ExamSystemDataContext();
-            db.Connection.Open();
-            db.Transaction = db.Connection.BeginTransaction();
-        }
-
         [Test]
         public void Choice_WhenCreated_HasId()
         {
@@ -26,12 +16,6 @@ namespace JoanCEdwards.DAO.Tests
             db.Choices.InsertOnSubmit(choice);
             db.SubmitChanges();
             Assert.Greater(choice.ChoiceId, 0);
-        }
-
-        [TearDown]
-        public void Teardown()
-        {
-            db.Transaction.Rollback();
         }
     }
 }
