@@ -52,7 +52,7 @@ namespace JoanCEdwards.DAO.Tests
             var answer = actualQuestion.QuestionAnswers.First();
             answer.Score = 80;
             answer.ScorerId = expectedProfile.UserId;
-            answer.Comments = "Good attempt";
+            answer.Comment = "Good attempt";
             db.SubmitChanges();
 
             //Confirmation
