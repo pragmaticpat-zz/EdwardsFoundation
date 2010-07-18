@@ -19,6 +19,8 @@ namespace JoanCEdwards.DAO.Tests
         {
             db = new ExamSystemDataContext();
             expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S', Password = new string('p',300) };
+            db.Connection.Open();
+            db.Transaction = db.Connection.BeginTransaction();
             db.UserProfiles.InsertOnSubmit(expectedProfile);
             db.SubmitChanges();
         }
@@ -26,7 +28,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void UserProfile_WhenStored_ReturnsId()
         {
-            Assert.AreEqual(1, db.UserProfiles.First().UserId);
+            Assert.AreEqual(1, db.UserProfiles.Count());
         }
 
         [Test]
@@ -91,9 +93,7 @@ namespace JoanCEdwards.DAO.Tests
         [TearDown]
         public void Teardown()
         {
-            ExamSystemDataContext db = new ExamSystemDataContext();
-            db.ExecuteCommand("truncate table dbo.UserProfile");
-            db.SubmitChanges();
+            db.Transaction.Rollback();
         }
 
     }

@@ -18,6 +18,7 @@
       <Column Name="GradeLevel" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Association Name="UserProfile_ExamResult" Member="ExamResults" ThisKey="UserId" OtherKey="UserId" Type="ExamResult" />
     </Type>
   </Table>
   <Table Name="dbo.Exam" Member="Exams">
@@ -27,6 +28,7 @@
       <Column Name="Instructions" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Exam_ExamQuestion" Member="ExamQuestions" ThisKey="ExamId" OtherKey="ExamId" Type="ExamQuestion" />
+      <Association Name="Exam_ExamResult" Member="ExamResults" ThisKey="ExamId" OtherKey="ExamId" Type="ExamResult" />
     </Type>
   </Table>
   <Table Name="dbo.ExamQuestions" Member="ExamQuestions">
@@ -55,6 +57,17 @@
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Choice_QuestionChoice" Member="Choice" ThisKey="ChoiceId" OtherKey="ChoiceId" Type="Choice" IsForeignKey="true" />
       <Association Name="Question_QuestionChoice" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ExamResult" Member="ExamResults">
+    <Type Name="ExamResult">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaxScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Exam_ExamResult" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
+      <Association Name="UserProfile_ExamResult" Member="UserProfile" ThisKey="UserId" OtherKey="UserId" Type="UserProfile" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.DeleteUser" Method="DeleteUser">
