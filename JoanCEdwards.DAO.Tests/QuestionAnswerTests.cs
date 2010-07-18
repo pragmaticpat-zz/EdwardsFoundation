@@ -48,8 +48,17 @@ namespace JoanCEdwards.DAO.Tests
 
             var answer = actualQuestion.QuestionAnswers.First();
             answer.Score = 80;
+            answer.ScorerProfile = answer.UserProfile;
             answer.Comment = "Good attempt";
             db.SubmitChanges();
+
+            var confirmAnswer = (from qa in db.QuestionAnswers
+                where qa.QuestionAnswerId == answer.QuestionAnswerId
+                select qa).First();
+
+            Assert.AreEqual(80, confirmAnswer.Score);
+            Assert.AreEqual(answer.UserId, confirmAnswer.ScorerId);
+            Assert.AreEqual("Good attempt", confirmAnswer.Comment);
 
             //Confirmation
 
