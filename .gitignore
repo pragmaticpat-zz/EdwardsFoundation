@@ -1,8 +1,16 @@
 */bin/*
+
 */obj/*
+
 */debug/*
+
 *.LDF
+
 JoanCEdwards.DAO/JoanCEdwards.DAO.Tests/bin/*
+
 JoanCEdwards.DAO/JoanCEdwards.DAO.Tests/obj/*
+
 JoanCEdwards.DAO/JoanCEdwards.DAO/bin/*
+
 JoanCEdwards.DAO/JoanCEdwards.DAO/obj/*
+*.suo
