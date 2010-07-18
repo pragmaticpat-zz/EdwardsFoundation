@@ -1,9 +1,0 @@
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\EdwardsFoundation.mdf
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\EdwardsFoundation_log.ldf
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\EdwardsFoundation.DataAccess.dll
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\EdwardsFoundation.DataAccess.pdb
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\JoanCEdwards.DAO.dll
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\bin\Release\JoanCEdwards.DAO.pdb
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\obj\Release\ResolveAssemblyReference.cache
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\obj\Release\EdwardsFoundation.DataAccess.dll
-C:\Dev\EdwardsFoundation\JoanCEdwards.DAO\EdwardsFoundation.DataAccess\obj\Release\EdwardsFoundation.DataAccess.pdb
