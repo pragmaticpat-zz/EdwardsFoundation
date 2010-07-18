@@ -15,7 +15,8 @@ namespace JoanCEdwards.DAO.Tests
         public void Setup()
         {
             db = new ExamSystemDataContext();
-            Teardown();
+            db.Connection.Open();
+            db.Transaction = db.Connection.BeginTransaction();
         }
 
         [Test]
@@ -23,7 +24,6 @@ namespace JoanCEdwards.DAO.Tests
         {
             var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
             var question = new Question() { QuestionCategory = "label", QuestionText = "here is the question text", QuestionType = "M" };
-            var db = new ExamSystemDataContext();
             db.Exams.InsertOnSubmit(exam);
             db.Questions.InsertOnSubmit(question);
             exam.ExamQuestions.Add(new ExamQuestion() { Exam = exam, Question = question, SortOrder = 1 });
@@ -38,11 +38,7 @@ namespace JoanCEdwards.DAO.Tests
         [TearDown]
         public void Teardown()
         {
-            db.ExecuteCommand("delete from dbo.ExamQuestions");
-            db.SubmitChanges();
-            db.ExecuteCommand("delete from dbo.Exam");
-            db.ExecuteCommand("delete from dbo.Question");
-            db.SubmitChanges();
+            db.Transaction.Rollback();
         }
     }
 }

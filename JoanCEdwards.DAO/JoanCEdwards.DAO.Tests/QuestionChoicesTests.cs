@@ -15,11 +15,6 @@ namespace JoanCEdwards.DAO.Tests
         public void Setup()
         {
             db = new ExamSystemDataContext();
-            db.ExecuteCommand("delete from dbo.QuestionChoice");
-            db.SubmitChanges();
-            db.ExecuteCommand("delete from dbo.Choice");
-            db.ExecuteCommand("delete from dbo.Question");
-            db.SubmitChanges();
             db.Connection.Open();
             db.Transaction = db.Connection.BeginTransaction();
         }
@@ -34,12 +29,6 @@ namespace JoanCEdwards.DAO.Tests
             db.Choices.InsertOnSubmit(choice);
             db.QuestionChoices.InsertOnSubmit(questionchoice);
             Assert.AreEqual(1, question.QuestionChoices.Count);
-        }
-
-        [Test]
-        public void Question_CanHaveMultipleChoices()
-        {
-            
         }
 
         [TearDown]

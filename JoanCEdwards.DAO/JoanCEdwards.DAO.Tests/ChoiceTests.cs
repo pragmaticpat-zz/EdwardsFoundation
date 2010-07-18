@@ -15,7 +15,8 @@ namespace JoanCEdwards.DAO.Tests
         public void Setup()
         {
             db = new ExamSystemDataContext();
-            Teardown();
+            db.Connection.Open();
+            db.Transaction = db.Connection.BeginTransaction();
         }
 
         [Test]
@@ -30,7 +31,7 @@ namespace JoanCEdwards.DAO.Tests
         [TearDown]
         public void Teardown()
         {
-            db.ExecuteCommand("delete from dbo.Choice");
+            db.Transaction.Rollback();
         }
     }
 }
