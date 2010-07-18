@@ -20,28 +20,30 @@ namespace ExamWeb
     {
         public void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         // CreatedUser event is called when a new user is successfully created
         public void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
         {
-
+            ProfileBase profile = ProfileBase.Create(CreateUserWizard1.UserName, true);
+            profile.Save();
             // Create an empty Profile for the newly created user
             //ProfileCommon profile = (ProfileCommon)ProfileCommon.Create(CreateUserWizard1.UserName, true);
-            CommonUserProfile profile = (CommonUserProfile)CommonUserProfile.Create(CreateUserWizard1.UserName, true);
-            // Populate some Profile properties off of the create user wizard
-            profile.FirstName = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Age")).Text;
-            profile.LastName = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Age")).Text;
-            profile.GraduatingClassYear = Int32.Parse(((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("GraduatingClass")).Text);
-            profile.StreetAddress1 = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("StreetAddress1")).Text;
-            profile.StreetAddress2 = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("StreetAddress2")).Text;
-            profile.City = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("City")).Text;
-            profile.State = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("State")).Text;
-            profile.ZipCode = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Zip")).Text;
+            ////CommonUserProfile profile = (CommonUserProfile)CommonUserProfile.Create(CreateUserWizard1.UserName, true);
+            //CommonUserProfile profile = CommonUserProfile.GetUserProfile(CreateUserWizard1.UserName, true);
+            //// Populate some Profile properties off of the create user wizard
+            //profile.FirstName = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Age")).Text;
+            //profile.LastName = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Age")).Text;
+            //profile.GraduatingClassYear = Int32.Parse(((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("GraduatingClass")).Text);
+            //profile.StreetAddress1 = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("StreetAddress1")).Text;
+            //profile.StreetAddress2 = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("StreetAddress2")).Text;
+            //profile.City = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("City")).Text;
+            //profile.State = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("State")).Text;
+            //profile.ZipCode = ((TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Zip")).Text;
 
-            // Save the profile - must be done since we explicitly created this profile instance
-            profile.Save();
+            //// Save the profile - must be done since we explicitly created this profile instance
+            //profile.Save();
         }
 
         // Activate event fires when the user hits "next" in the CreateUserWizard
@@ -49,7 +51,7 @@ namespace ExamWeb
         {
 
             // Databind list of roles in the role manager system to a listbox in the wizard
-            AvailableRoles.DataSource = Roles.GetAllRoles(); ;
+            AvailableRoles.DataSource = this.GetAndCreateRolesIfNotExist();
             AvailableRoles.DataBind();
         }
 
@@ -63,6 +65,25 @@ namespace ExamWeb
                 if (AvailableRoles.Items[i].Selected == true)
                     Roles.AddUserToRole(CreateUserWizard1.UserName, AvailableRoles.Items[i].Value);
             }
+        }
+
+        protected string[] GetAndCreateRolesIfNotExist()
+        {
+            string [] roles = Roles.GetAllRoles();
+
+            if (!roles.Contains<string>("Student"))
+            {
+                Roles.CreateRole("Student");
+            }
+            if (!roles.Contains<string>("Mentor"))
+            {
+                Roles.CreateRole("Mentor");
+            }
+            if (!roles.Contains<string>("Director"))
+            {
+                Roles.CreateRole("Director");
+            }
+            return Roles.GetAllRoles();
         }
     }
 }
