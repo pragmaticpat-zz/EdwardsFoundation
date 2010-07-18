@@ -45,15 +45,15 @@ namespace JoanCEdwards.DAO
     partial void InsertQuestion(Question instance);
     partial void UpdateQuestion(Question instance);
     partial void DeleteQuestion(Question instance);
-    partial void InsertQuestionAnswer(QuestionAnswer instance);
-    partial void UpdateQuestionAnswer(QuestionAnswer instance);
-    partial void DeleteQuestionAnswer(QuestionAnswer instance);
     partial void InsertQuestionChoice(QuestionChoice instance);
     partial void UpdateQuestionChoice(QuestionChoice instance);
     partial void DeleteQuestionChoice(QuestionChoice instance);
     partial void InsertExam(Exam instance);
     partial void UpdateExam(Exam instance);
     partial void DeleteExam(Exam instance);
+    partial void InsertQuestionAnswer(QuestionAnswer instance);
+    partial void UpdateQuestionAnswer(QuestionAnswer instance);
+    partial void DeleteQuestionAnswer(QuestionAnswer instance);
     #endregion
 		
 		public ExamSystemDataContext() : 
@@ -126,14 +126,6 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
-		public System.Data.Linq.Table<QuestionAnswer> QuestionAnswers
-		{
-			get
-			{
-				return this.GetTable<QuestionAnswer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<QuestionChoice> QuestionChoices
 		{
 			get
@@ -147,6 +139,14 @@ namespace JoanCEdwards.DAO
 			get
 			{
 				return this.GetTable<Exam>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QuestionAnswer> QuestionAnswers
+		{
+			get
+			{
+				return this.GetTable<QuestionAnswer>();
 			}
 		}
 		
@@ -595,25 +595,25 @@ namespace JoanCEdwards.DAO
 		private void attach_QuestionAnswers(QuestionAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.UserProfile = this;
+			entity.ScorerProfile = this;
 		}
 		
 		private void detach_QuestionAnswers(QuestionAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.UserProfile = null;
+			entity.ScorerProfile = null;
 		}
 		
 		private void attach_QuestionAnswers1(QuestionAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.UserProfile1 = this;
+			entity.UserProfile = this;
 		}
 		
 		private void detach_QuestionAnswers1(QuestionAnswer entity)
 		{
 			this.SendPropertyChanging();
-			entity.UserProfile1 = null;
+			entity.UserProfile = null;
 		}
 	}
 	
@@ -1065,9 +1065,9 @@ namespace JoanCEdwards.DAO
 		
 		private EntitySet<ExamQuestion> _ExamQuestions;
 		
-		private EntitySet<QuestionAnswer> _QuestionAnswers;
-		
 		private EntitySet<QuestionChoice> _QuestionChoices;
+		
+		private EntitySet<QuestionAnswer> _QuestionAnswers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1086,8 +1086,8 @@ namespace JoanCEdwards.DAO
 		public Question()
 		{
 			this._ExamQuestions = new EntitySet<ExamQuestion>(new Action<ExamQuestion>(this.attach_ExamQuestions), new Action<ExamQuestion>(this.detach_ExamQuestions));
-			this._QuestionAnswers = new EntitySet<QuestionAnswer>(new Action<QuestionAnswer>(this.attach_QuestionAnswers), new Action<QuestionAnswer>(this.detach_QuestionAnswers));
 			this._QuestionChoices = new EntitySet<QuestionChoice>(new Action<QuestionChoice>(this.attach_QuestionChoices), new Action<QuestionChoice>(this.detach_QuestionChoices));
+			this._QuestionAnswers = new EntitySet<QuestionAnswer>(new Action<QuestionAnswer>(this.attach_QuestionAnswers), new Action<QuestionAnswer>(this.detach_QuestionAnswers));
 			OnCreated();
 		}
 		
@@ -1184,19 +1184,6 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionAnswer", Storage="_QuestionAnswers", ThisKey="QuestionId", OtherKey="QuestionId")]
-		public EntitySet<QuestionAnswer> QuestionAnswers
-		{
-			get
-			{
-				return this._QuestionAnswers;
-			}
-			set
-			{
-				this._QuestionAnswers.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionChoice", Storage="_QuestionChoices", ThisKey="QuestionId", OtherKey="QuestionId")]
 		public EntitySet<QuestionChoice> QuestionChoices
 		{
@@ -1207,6 +1194,19 @@ namespace JoanCEdwards.DAO
 			set
 			{
 				this._QuestionChoices.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionAnswer", Storage="_QuestionAnswers", ThisKey="QuestionId", OtherKey="QuestionId")]
+		public EntitySet<QuestionAnswer> QuestionAnswers
+		{
+			get
+			{
+				return this._QuestionAnswers;
+			}
+			set
+			{
+				this._QuestionAnswers.Assign(value);
 			}
 		}
 		
@@ -1242,18 +1242,6 @@ namespace JoanCEdwards.DAO
 			entity.Question = null;
 		}
 		
-		private void attach_QuestionAnswers(QuestionAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = this;
-		}
-		
-		private void detach_QuestionAnswers(QuestionAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Question = null;
-		}
-		
 		private void attach_QuestionChoices(QuestionChoice entity)
 		{
 			this.SendPropertyChanging();
@@ -1265,399 +1253,17 @@ namespace JoanCEdwards.DAO
 			this.SendPropertyChanging();
 			entity.Question = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestionAnswer")]
-	public partial class QuestionAnswer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _QuestionAnswerId;
-		
-		private int _QuestionId;
-		
-		private int _UserId;
-		
-		private string _Answer;
-		
-		private int _ExamId;
-		
-		private System.Nullable<int> _Score;
-		
-		private System.Nullable<int> _ScorerId;
-		
-		private string _Comment;
-		
-		private EntityRef<Question> _Question;
-		
-		private EntityRef<UserProfile> _UserProfile;
-		
-		private EntityRef<UserProfile> _UserProfile1;
-		
-		private EntityRef<Exam> _Exam;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQuestionAnswerIdChanging(int value);
-    partial void OnQuestionAnswerIdChanged();
-    partial void OnQuestionIdChanging(int value);
-    partial void OnQuestionIdChanged();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnAnswerChanging(string value);
-    partial void OnAnswerChanged();
-    partial void OnExamIdChanging(int value);
-    partial void OnExamIdChanged();
-    partial void OnScoreChanging(System.Nullable<int> value);
-    partial void OnScoreChanged();
-    partial void OnScorerIdChanging(System.Nullable<int> value);
-    partial void OnScorerIdChanged();
-    partial void OnCommentChanging(string value);
-    partial void OnCommentChanged();
-    #endregion
-		
-		public QuestionAnswer()
+		private void attach_QuestionAnswers(QuestionAnswer entity)
 		{
-			this._Question = default(EntityRef<Question>);
-			this._UserProfile = default(EntityRef<UserProfile>);
-			this._UserProfile1 = default(EntityRef<UserProfile>);
-			this._Exam = default(EntityRef<Exam>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Question = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionAnswerId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int QuestionAnswerId
+		private void detach_QuestionAnswers(QuestionAnswer entity)
 		{
-			get
-			{
-				return this._QuestionAnswerId;
-			}
-			set
-			{
-				if ((this._QuestionAnswerId != value))
-				{
-					this.OnQuestionAnswerIdChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionAnswerId = value;
-					this.SendPropertyChanged("QuestionAnswerId");
-					this.OnQuestionAnswerIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int NOT NULL")]
-		public int QuestionId
-		{
-			get
-			{
-				return this._QuestionId;
-			}
-			set
-			{
-				if ((this._QuestionId != value))
-				{
-					if (this._Question.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuestionIdChanging(value);
-					this.SendPropertyChanging();
-					this._QuestionId = value;
-					this.SendPropertyChanged("QuestionId");
-					this.OnQuestionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					if (this._UserProfile1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Answer", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Answer
-		{
-			get
-			{
-				return this._Answer;
-			}
-			set
-			{
-				if ((this._Answer != value))
-				{
-					this.OnAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._Answer = value;
-					this.SendPropertyChanged("Answer");
-					this.OnAnswerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamId", DbType="Int NOT NULL")]
-		public int ExamId
-		{
-			get
-			{
-				return this._ExamId;
-			}
-			set
-			{
-				if ((this._ExamId != value))
-				{
-					if (this._Exam.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnExamIdChanging(value);
-					this.SendPropertyChanging();
-					this._ExamId = value;
-					this.SendPropertyChanged("ExamId");
-					this.OnExamIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
-		public System.Nullable<int> Score
-		{
-			get
-			{
-				return this._Score;
-			}
-			set
-			{
-				if ((this._Score != value))
-				{
-					this.OnScoreChanging(value);
-					this.SendPropertyChanging();
-					this._Score = value;
-					this.SendPropertyChanged("Score");
-					this.OnScoreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScorerId", DbType="Int")]
-		public System.Nullable<int> ScorerId
-		{
-			get
-			{
-				return this._ScorerId;
-			}
-			set
-			{
-				if ((this._ScorerId != value))
-				{
-					if (this._UserProfile.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnScorerIdChanging(value);
-					this.SendPropertyChanging();
-					this._ScorerId = value;
-					this.SendPropertyChanged("ScorerId");
-					this.OnScorerIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(MAX)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this.OnCommentChanging(value);
-					this.SendPropertyChanging();
-					this._Comment = value;
-					this.SendPropertyChanged("Comment");
-					this.OnCommentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionAnswer", Storage="_Question", ThisKey="QuestionId", OtherKey="QuestionId", IsForeignKey=true)]
-		public Question Question
-		{
-			get
-			{
-				return this._Question.Entity;
-			}
-			set
-			{
-				Question previousValue = this._Question.Entity;
-				if (((previousValue != value) 
-							|| (this._Question.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Question.Entity = null;
-						previousValue.QuestionAnswers.Remove(this);
-					}
-					this._Question.Entity = value;
-					if ((value != null))
-					{
-						value.QuestionAnswers.Add(this);
-						this._QuestionId = value.QuestionId;
-					}
-					else
-					{
-						this._QuestionId = default(int);
-					}
-					this.SendPropertyChanged("Question");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_QuestionAnswer", Storage="_UserProfile", ThisKey="ScorerId", OtherKey="UserId", IsForeignKey=true)]
-		public UserProfile UserProfile
-		{
-			get
-			{
-				return this._UserProfile.Entity;
-			}
-			set
-			{
-				UserProfile previousValue = this._UserProfile.Entity;
-				if (((previousValue != value) 
-							|| (this._UserProfile.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserProfile.Entity = null;
-						previousValue.QuestionAnswers.Remove(this);
-					}
-					this._UserProfile.Entity = value;
-					if ((value != null))
-					{
-						value.QuestionAnswers.Add(this);
-						this._ScorerId = value.UserId;
-					}
-					else
-					{
-						this._ScorerId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("UserProfile");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_QuestionAnswer1", Storage="_UserProfile1", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
-		public UserProfile UserProfile1
-		{
-			get
-			{
-				return this._UserProfile1.Entity;
-			}
-			set
-			{
-				UserProfile previousValue = this._UserProfile1.Entity;
-				if (((previousValue != value) 
-							|| (this._UserProfile1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserProfile1.Entity = null;
-						previousValue.QuestionAnswers1.Remove(this);
-					}
-					this._UserProfile1.Entity = value;
-					if ((value != null))
-					{
-						value.QuestionAnswers1.Add(this);
-						this._UserId = value.UserId;
-					}
-					else
-					{
-						this._UserId = default(int);
-					}
-					this.SendPropertyChanged("UserProfile1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_QuestionAnswer", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
-		public Exam Exam
-		{
-			get
-			{
-				return this._Exam.Entity;
-			}
-			set
-			{
-				Exam previousValue = this._Exam.Entity;
-				if (((previousValue != value) 
-							|| (this._Exam.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Exam.Entity = null;
-						previousValue.QuestionAnswers.Remove(this);
-					}
-					this._Exam.Entity = value;
-					if ((value != null))
-					{
-						value.QuestionAnswers.Add(this);
-						this._ExamId = value.ExamId;
-					}
-					else
-					{
-						this._ExamId = default(int);
-					}
-					this.SendPropertyChanged("Exam");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Question = null;
 		}
 	}
 	
@@ -2092,6 +1698,400 @@ namespace JoanCEdwards.DAO
 		{
 			this.SendPropertyChanging();
 			entity.Exam = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestionAnswer")]
+	public partial class QuestionAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QuestionAnswerId;
+		
+		private int _QuestionId;
+		
+		private int _UserId;
+		
+		private string _Answer;
+		
+		private int _ExamId;
+		
+		private System.Nullable<int> _Score;
+		
+		private System.Nullable<int> _ScorerId;
+		
+		private string _Comment;
+		
+		private EntityRef<Exam> _Exam;
+		
+		private EntityRef<Question> _Question;
+		
+		private EntityRef<UserProfile> _ScorerProfile;
+		
+		private EntityRef<UserProfile> _UserProfile;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionAnswerIdChanging(int value);
+    partial void OnQuestionAnswerIdChanged();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnAnswerChanging(string value);
+    partial void OnAnswerChanged();
+    partial void OnExamIdChanging(int value);
+    partial void OnExamIdChanged();
+    partial void OnScoreChanging(System.Nullable<int> value);
+    partial void OnScoreChanged();
+    partial void OnScorerIdChanging(System.Nullable<int> value);
+    partial void OnScorerIdChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    #endregion
+		
+		public QuestionAnswer()
+		{
+			this._Exam = default(EntityRef<Exam>);
+			this._Question = default(EntityRef<Question>);
+			this._ScorerProfile = default(EntityRef<UserProfile>);
+			this._UserProfile = default(EntityRef<UserProfile>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionAnswerId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int QuestionAnswerId
+		{
+			get
+			{
+				return this._QuestionAnswerId;
+			}
+			set
+			{
+				if ((this._QuestionAnswerId != value))
+				{
+					this.OnQuestionAnswerIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionAnswerId = value;
+					this.SendPropertyChanged("QuestionAnswerId");
+					this.OnQuestionAnswerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int NOT NULL")]
+		public int QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._UserProfile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Answer", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Answer
+		{
+			get
+			{
+				return this._Answer;
+			}
+			set
+			{
+				if ((this._Answer != value))
+				{
+					this.OnAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._Answer = value;
+					this.SendPropertyChanged("Answer");
+					this.OnAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamId", DbType="Int NOT NULL")]
+		public int ExamId
+		{
+			get
+			{
+				return this._ExamId;
+			}
+			set
+			{
+				if ((this._ExamId != value))
+				{
+					if (this._Exam.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnExamIdChanging(value);
+					this.SendPropertyChanging();
+					this._ExamId = value;
+					this.SendPropertyChanged("ExamId");
+					this.OnExamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
+		public System.Nullable<int> Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScorerId", DbType="Int")]
+		public System.Nullable<int> ScorerId
+		{
+			get
+			{
+				return this._ScorerId;
+			}
+			set
+			{
+				if ((this._ScorerId != value))
+				{
+					if (this._ScorerProfile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnScorerIdChanging(value);
+					this.SendPropertyChanging();
+					this._ScorerId = value;
+					this.SendPropertyChanged("ScorerId");
+					this.OnScorerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(MAX)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_QuestionAnswer", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.QuestionAnswers.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionAnswers.Add(this);
+						this._ExamId = value.ExamId;
+					}
+					else
+					{
+						this._ExamId = default(int);
+					}
+					this.SendPropertyChanged("Exam");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionAnswer", Storage="_Question", ThisKey="QuestionId", OtherKey="QuestionId", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.QuestionAnswers.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionAnswers.Add(this);
+						this._QuestionId = value.QuestionId;
+					}
+					else
+					{
+						this._QuestionId = default(int);
+					}
+					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_QuestionAnswer", Storage="_ScorerProfile", ThisKey="ScorerId", OtherKey="UserId", IsForeignKey=true)]
+		public UserProfile ScorerProfile
+		{
+			get
+			{
+				return this._ScorerProfile.Entity;
+			}
+			set
+			{
+				UserProfile previousValue = this._ScorerProfile.Entity;
+				if (((previousValue != value) 
+							|| (this._ScorerProfile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ScorerProfile.Entity = null;
+						previousValue.QuestionAnswers.Remove(this);
+					}
+					this._ScorerProfile.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionAnswers.Add(this);
+						this._ScorerId = value.UserId;
+					}
+					else
+					{
+						this._ScorerId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ScorerProfile");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_QuestionAnswer1", Storage="_UserProfile", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public UserProfile UserProfile
+		{
+			get
+			{
+				return this._UserProfile.Entity;
+			}
+			set
+			{
+				UserProfile previousValue = this._UserProfile.Entity;
+				if (((previousValue != value) 
+							|| (this._UserProfile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserProfile.Entity = null;
+						previousValue.QuestionAnswers1.Remove(this);
+					}
+					this._UserProfile.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionAnswers1.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(int);
+					}
+					this.SendPropertyChanged("UserProfile");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
