@@ -24,13 +24,13 @@ namespace JoanCEdwards.DAO.Tests
             var choice = new Choice() { Label = "label", Value  = 10};
             db.Choices.InsertOnSubmit(choice);
             db.SubmitChanges();
-            Assert.AreEqual(1, choice.ChoiceId);
+            Assert.Greater(choice.ChoiceId, 0);
         }
 
         [TearDown]
         public void Teardown()
         {
-            db.ExecuteCommand("truncate table dbo.Choice");
+            db.ExecuteCommand("delete from dbo.Choice");
         }
     }
 }

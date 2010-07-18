@@ -42,6 +42,12 @@ namespace JoanCEdwards.DAO
     partial void InsertQuestion(Question instance);
     partial void UpdateQuestion(Question instance);
     partial void DeleteQuestion(Question instance);
+    partial void InsertExamQuestion(ExamQuestion instance);
+    partial void UpdateExamQuestion(ExamQuestion instance);
+    partial void DeleteExamQuestion(ExamQuestion instance);
+    partial void InsertQuestionChoice(QuestionChoice instance);
+    partial void UpdateQuestionChoice(QuestionChoice instance);
+    partial void DeleteQuestionChoice(QuestionChoice instance);
     #endregion
 		
 		public ExamSystemDataContext() : 
@@ -103,6 +109,22 @@ namespace JoanCEdwards.DAO
 			get
 			{
 				return this.GetTable<Question>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ExamQuestion> ExamQuestions
+		{
+			get
+			{
+				return this.GetTable<ExamQuestion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QuestionChoice> QuestionChoices
+		{
+			get
+			{
+				return this.GetTable<QuestionChoice>();
 			}
 		}
 		
@@ -365,6 +387,8 @@ namespace JoanCEdwards.DAO
 		
 		private bool _Status;
 		
+		private EntitySet<ExamQuestion> _ExamQuestions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -381,6 +405,7 @@ namespace JoanCEdwards.DAO
 		
 		public Exam()
 		{
+			this._ExamQuestions = new EntitySet<ExamQuestion>(new Action<ExamQuestion>(this.attach_ExamQuestions), new Action<ExamQuestion>(this.detach_ExamQuestions));
 			OnCreated();
 		}
 		
@@ -464,6 +489,19 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_ExamQuestions", ThisKey="ExamId", OtherKey="ExamId")]
+		public EntitySet<ExamQuestion> ExamQuestions
+		{
+			get
+			{
+				return this._ExamQuestions;
+			}
+			set
+			{
+				this._ExamQuestions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -483,6 +521,18 @@ namespace JoanCEdwards.DAO
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = this;
+		}
+		
+		private void detach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Choice")]
@@ -496,6 +546,8 @@ namespace JoanCEdwards.DAO
 		private string _Label;
 		
 		private int _Value;
+		
+		private EntitySet<QuestionChoice> _QuestionChoices;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -511,6 +563,7 @@ namespace JoanCEdwards.DAO
 		
 		public Choice()
 		{
+			this._QuestionChoices = new EntitySet<QuestionChoice>(new Action<QuestionChoice>(this.attach_QuestionChoices), new Action<QuestionChoice>(this.detach_QuestionChoices));
 			OnCreated();
 		}
 		
@@ -574,6 +627,19 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Choice_QuestionChoice", Storage="_QuestionChoices", ThisKey="ChoiceId", OtherKey="ChoiceId")]
+		public EntitySet<QuestionChoice> QuestionChoices
+		{
+			get
+			{
+				return this._QuestionChoices;
+			}
+			set
+			{
+				this._QuestionChoices.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -593,6 +659,18 @@ namespace JoanCEdwards.DAO
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_QuestionChoices(QuestionChoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Choice = this;
+		}
+		
+		private void detach_QuestionChoices(QuestionChoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Choice = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Question")]
@@ -608,6 +686,10 @@ namespace JoanCEdwards.DAO
 		private string _QuestionType;
 		
 		private string _QuestionText;
+		
+		private EntitySet<ExamQuestion> _ExamQuestions;
+		
+		private EntitySet<QuestionChoice> _QuestionChoices;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -625,6 +707,8 @@ namespace JoanCEdwards.DAO
 		
 		public Question()
 		{
+			this._ExamQuestions = new EntitySet<ExamQuestion>(new Action<ExamQuestion>(this.attach_ExamQuestions), new Action<ExamQuestion>(this.detach_ExamQuestions));
+			this._QuestionChoices = new EntitySet<QuestionChoice>(new Action<QuestionChoice>(this.attach_QuestionChoices), new Action<QuestionChoice>(this.detach_QuestionChoices));
 			OnCreated();
 		}
 		
@@ -704,6 +788,440 @@ namespace JoanCEdwards.DAO
 					this._QuestionText = value;
 					this.SendPropertyChanged("QuestionText");
 					this.OnQuestionTextChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_ExamQuestion", Storage="_ExamQuestions", ThisKey="QuestionId", OtherKey="QuestionId")]
+		public EntitySet<ExamQuestion> ExamQuestions
+		{
+			get
+			{
+				return this._ExamQuestions;
+			}
+			set
+			{
+				this._ExamQuestions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionChoice", Storage="_QuestionChoices", ThisKey="QuestionId", OtherKey="QuestionId")]
+		public EntitySet<QuestionChoice> QuestionChoices
+		{
+			get
+			{
+				return this._QuestionChoices;
+			}
+			set
+			{
+				this._QuestionChoices.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+		
+		private void attach_QuestionChoices(QuestionChoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_QuestionChoices(QuestionChoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ExamQuestions")]
+	public partial class ExamQuestion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ExamId;
+		
+		private int _QuestionId;
+		
+		private int _SortOrder;
+		
+		private EntityRef<Exam> _Exam;
+		
+		private EntityRef<Question> _Question;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamIdChanging(int value);
+    partial void OnExamIdChanged();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
+    #endregion
+		
+		public ExamQuestion()
+		{
+			this._Exam = default(EntityRef<Exam>);
+			this._Question = default(EntityRef<Question>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ExamId
+		{
+			get
+			{
+				return this._ExamId;
+			}
+			set
+			{
+				if ((this._ExamId != value))
+				{
+					if (this._Exam.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnExamIdChanging(value);
+					this.SendPropertyChanging();
+					this._ExamId = value;
+					this.SendPropertyChanged("ExamId");
+					this.OnExamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this.OnSortOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SortOrder = value;
+					this.SendPropertyChanged("SortOrder");
+					this.OnSortOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.ExamQuestions.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.ExamQuestions.Add(this);
+						this._ExamId = value.ExamId;
+					}
+					else
+					{
+						this._ExamId = default(int);
+					}
+					this.SendPropertyChanged("Exam");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_ExamQuestion", Storage="_Question", ThisKey="QuestionId", OtherKey="QuestionId", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.ExamQuestions.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.ExamQuestions.Add(this);
+						this._QuestionId = value.QuestionId;
+					}
+					else
+					{
+						this._QuestionId = default(int);
+					}
+					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestionChoice")]
+	public partial class QuestionChoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _QuestionId;
+		
+		private int _ChoiceId;
+		
+		private int _SortOrder;
+		
+		private EntityRef<Choice> _Choice;
+		
+		private EntityRef<Question> _Question;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnChoiceIdChanging(int value);
+    partial void OnChoiceIdChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
+    #endregion
+		
+		public QuestionChoice()
+		{
+			this._Choice = default(EntityRef<Choice>);
+			this._Question = default(EntityRef<Question>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChoiceId", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ChoiceId
+		{
+			get
+			{
+				return this._ChoiceId;
+			}
+			set
+			{
+				if ((this._ChoiceId != value))
+				{
+					if (this._Choice.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnChoiceIdChanging(value);
+					this.SendPropertyChanging();
+					this._ChoiceId = value;
+					this.SendPropertyChanged("ChoiceId");
+					this.OnChoiceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortOrder", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this.OnSortOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SortOrder = value;
+					this.SendPropertyChanged("SortOrder");
+					this.OnSortOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Choice_QuestionChoice", Storage="_Choice", ThisKey="ChoiceId", OtherKey="ChoiceId", IsForeignKey=true)]
+		public Choice Choice
+		{
+			get
+			{
+				return this._Choice.Entity;
+			}
+			set
+			{
+				Choice previousValue = this._Choice.Entity;
+				if (((previousValue != value) 
+							|| (this._Choice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Choice.Entity = null;
+						previousValue.QuestionChoices.Remove(this);
+					}
+					this._Choice.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionChoices.Add(this);
+						this._ChoiceId = value.ChoiceId;
+					}
+					else
+					{
+						this._ChoiceId = default(int);
+					}
+					this.SendPropertyChanged("Choice");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionChoice", Storage="_Question", ThisKey="QuestionId", OtherKey="QuestionId", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.QuestionChoices.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionChoices.Add(this);
+						this._QuestionId = value.QuestionId;
+					}
+					else
+					{
+						this._QuestionId = default(int);
+					}
+					this.SendPropertyChanged("Question");
 				}
 			}
 		}

@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamSystem.cs">
+      <DependentUpon>ExamSystem.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ExamSystem.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

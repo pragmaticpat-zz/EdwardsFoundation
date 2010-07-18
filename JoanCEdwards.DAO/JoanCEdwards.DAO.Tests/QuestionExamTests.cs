@@ -9,6 +9,15 @@ namespace JoanCEdwards.DAO.Tests
     [TestFixture]
     public class QuestionExamTests
     {
+        ExamSystemDataContext db;
+
+        [SetUp]
+        public void Setup()
+        {
+            db = new ExamSystemDataContext();
+            Teardown();
+        }
+
         [Test]
         public void Exam_CanHaveOneQuestion()
         {
@@ -17,12 +26,23 @@ namespace JoanCEdwards.DAO.Tests
             var db = new ExamSystemDataContext();
             db.Exams.InsertOnSubmit(exam);
             db.Questions.InsertOnSubmit(question);
-            exam.Questions.InsertOnSubmit(question);
+            exam.ExamQuestions.Add(new ExamQuestion() { Exam = exam, Question = question, SortOrder = 1 });
             db.SubmitChanges();
+
             var actualExam = (from e in db.Exams
                               where e.ExamId == exam.ExamId
-                              select e).FirstOrDefault();
-            Assert.AreEqual(1, actualExam.Questions.Count);
+                              select e).First();
+            Assert.AreEqual(1, actualExam.ExamQuestions.Count);
+
+        }
+        [TearDown]
+        public void Teardown()
+        {
+            db.ExecuteCommand("delete from dbo.ExamQuestions");
+            db.SubmitChanges();
+            db.ExecuteCommand("delete from dbo.Exam");
+            db.ExecuteCommand("delete from dbo.Question");
+            db.SubmitChanges();
         }
     }
 }

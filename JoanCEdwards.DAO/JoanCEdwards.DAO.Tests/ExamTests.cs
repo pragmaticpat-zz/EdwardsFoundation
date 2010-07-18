@@ -17,7 +17,7 @@ namespace JoanCEdwards.DAO.Tests
             db.Exams.InsertOnSubmit(exam);
             db.SubmitChanges();
             var actualExamId = db.Exams.First<Exam>().ExamId;
-            Assert.AreEqual(1, actualExamId);
+            Assert.AreEqual(1, db.Exams.Count());
         }
 
         [Test]

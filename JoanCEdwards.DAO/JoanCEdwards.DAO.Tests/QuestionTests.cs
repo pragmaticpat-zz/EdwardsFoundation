@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Diagnostics;
 
 namespace JoanCEdwards.DAO.Tests
 {
@@ -15,7 +16,10 @@ namespace JoanCEdwards.DAO.Tests
         public void Setup()
         {
             db = new ExamSystemDataContext();
-            Teardown();
+            db.Connection.Open();
+            db.ExecuteCommand("delete from dbo.questionchoice");
+            db.ExecuteCommand("delete from dbo.question");
+            db.Transaction = db.Connection.BeginTransaction();
         }
 
         [Test]
@@ -24,13 +28,15 @@ namespace JoanCEdwards.DAO.Tests
             var question = new Question() { QuestionCategory = "category", QuestionText = "here is the question text", QuestionType = "M" };
             db.Questions.InsertOnSubmit(question);
             db.SubmitChanges();
-            Assert.AreEqual(1, question.QuestionId);
+            Assert.AreEqual(1, db.Questions.Count());
         }
 
         [TearDown]
         public void Teardown()
         {
-            db.ExecuteCommand("truncate table dbo.Question");
+            db.Transaction.Rollback();
+            Debug.Assert(db.Choices.Count() == 0);
+            db.Connection.Dispose();
         }
     }
 }
