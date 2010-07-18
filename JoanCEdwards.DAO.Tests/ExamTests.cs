@@ -12,10 +12,23 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void Exam_WhenCreated_ThereIsOneExamInTheTable()
         {
+            CreateDefaultExam();
+            Assert.AreEqual(1, db.Exams.Count());
+        }
+
+        [Test]
+        public void Exam_TwoExamsHaveTheSameName_BothCanBeStored()
+        {
+            CreateDefaultExam();
+            CreateDefaultExam();
+            Assert.AreEqual(2, db.Exams.Count());
+        }
+
+        private void CreateDefaultExam()
+        {
             var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
             db.Exams.InsertOnSubmit(exam);
             db.SubmitChanges();
-            Assert.AreEqual(1, db.Exams.Count());
         }
 
         [Test]
