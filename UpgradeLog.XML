@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
-<Properties><Property Name="Solution" Value="EdwardsFoundation">
-</Property><Property Name="Solution File" Value="C:\Dev\EdwardsFoundation\EdwardsFoundation.sln">
-</Property><Property Name="Date" Value="Sunday, July 18, 2010">
-</Property><Property Name="Time" Value="9:49:09 AM">
-</Property></Properties><Event ErrorLevel="0" Project="ExamApplication" Source="ExamApplication\ExamApplication.csproj" Description="Project converted successfully">
-</Event><Event ErrorLevel="3" Project="ExamApplication" Source="ExamApplication\ExamApplication.csproj" Description="Converted">
-</Event><Event ErrorLevel="2" Project="" Source="ExamApplication\ExamApplication.csproj" Description="The project file 'C:\Dev\EdwardsFoundation\ExamApplication\ExamApplication.csproj' cannot be opened.&#xA;&#xA;The project type is not supported by this installation.">
-</Event></UpgradeLog>
