@@ -44,5 +44,16 @@ namespace JoanCEdwards.DAO.Properties {
                 return ((string)(this["EdwardsFoundationConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=EdwardsFoundation;Integrated Security=Tr" +
+            "ue")]
+        public string EdwardsFoundationConnectionString2 {
+            get {
+                return ((string)(this["EdwardsFoundationConnectionString2"]));
+            }
+        }
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="EdwardsFoundation">
+</Property><Property Name="Solution File" Value="C:\Dev\EdwardsFoundation\EdwardsFoundation.sln">
+</Property><Property Name="Date" Value="Sunday, July 18, 2010">
+</Property><Property Name="Time" Value="14:18 PM">
+</Property></Properties><Event ErrorLevel="0" Project="JoanCEdwards.DAO" Source="JoanCEdwards.DAO\JoanCEdwards.DAO.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="JoanCEdwards.DAO" Source="JoanCEdwards.DAO\JoanCEdwards.DAO.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="JoanCEdwards.DAO.Tests" Source="JoanCEdwards.DAO.Tests\JoanCEdwards.DAO.Tests.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="JoanCEdwards.DAO.Tests" Source="JoanCEdwards.DAO.Tests\JoanCEdwards.DAO.Tests.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="JoanCEdwards.ExamProcessing.Tests" Source="JoanCEdwards.ExamProcessing.Tests\JoanCEdwards.ExamProcessing.Tests.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="JoanCEdwards.ExamProcessing.Tests" Source="JoanCEdwards.ExamProcessing.Tests\JoanCEdwards.ExamProcessing.Tests.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="ExamWeb" Source="ExamWeb\ExamWeb.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="ExamWeb" Source="ExamWeb\ExamWeb.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="JoanCEdwards.ExamLibrary" Source="JoanCEdwards.ExamLibrary\JoanCEdwards.ExamLibrary.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="JoanCEdwards.ExamLibrary" Source="JoanCEdwards.ExamLibrary\JoanCEdwards.ExamLibrary.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="SuveryWebControls" Source="SuveryWebControls\SuveryWebControls.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="SuveryWebControls" Source="SuveryWebControls\SuveryWebControls.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="EdwardsFoundation.sln" Description="The solution file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="" Source="EdwardsFoundation.sln" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="ExamWeb" Source="ExamWeb\ExamWeb.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
