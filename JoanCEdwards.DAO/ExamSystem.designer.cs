@@ -36,9 +36,6 @@ namespace JoanCEdwards.DAO
     partial void InsertUserProfile(UserProfile instance);
     partial void UpdateUserProfile(UserProfile instance);
     partial void DeleteUserProfile(UserProfile instance);
-    partial void InsertExam(Exam instance);
-    partial void UpdateExam(Exam instance);
-    partial void DeleteExam(Exam instance);
     partial void InsertExamQuestion(ExamQuestion instance);
     partial void UpdateExamQuestion(ExamQuestion instance);
     partial void DeleteExamQuestion(ExamQuestion instance);
@@ -51,6 +48,9 @@ namespace JoanCEdwards.DAO
     partial void InsertExamResult(ExamResult instance);
     partial void UpdateExamResult(ExamResult instance);
     partial void DeleteExamResult(ExamResult instance);
+    partial void InsertExam(Exam instance);
+    partial void UpdateExam(Exam instance);
+    partial void DeleteExam(Exam instance);
     partial void InsertQuestionAnswer(QuestionAnswer instance);
     partial void UpdateQuestionAnswer(QuestionAnswer instance);
     partial void DeleteQuestionAnswer(QuestionAnswer instance);
@@ -102,14 +102,6 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
-		public System.Data.Linq.Table<Exam> Exams
-		{
-			get
-			{
-				return this.GetTable<Exam>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ExamQuestion> ExamQuestions
 		{
 			get
@@ -139,6 +131,14 @@ namespace JoanCEdwards.DAO
 			get
 			{
 				return this.GetTable<ExamResult>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Exam> Exams
+		{
+			get
+			{
+				return this.GetTable<Exam>();
 			}
 		}
 		
@@ -589,224 +589,6 @@ namespace JoanCEdwards.DAO
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Exam")]
-	public partial class Exam : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ExamId;
-		
-		private string _Title;
-		
-		private string _Instructions;
-		
-		private bool _Status;
-		
-		private EntitySet<ExamQuestion> _ExamQuestions;
-		
-		private EntitySet<ExamResult> _ExamResults;
-		
-		private EntitySet<QuestionAnswer> _QuestionAnswers;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnExamIdChanging(int value);
-    partial void OnExamIdChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnInstructionsChanging(string value);
-    partial void OnInstructionsChanged();
-    partial void OnStatusChanging(bool value);
-    partial void OnStatusChanged();
-    #endregion
-		
-		public Exam()
-		{
-			this._ExamQuestions = new EntitySet<ExamQuestion>(new Action<ExamQuestion>(this.attach_ExamQuestions), new Action<ExamQuestion>(this.detach_ExamQuestions));
-			this._ExamResults = new EntitySet<ExamResult>(new Action<ExamResult>(this.attach_ExamResults), new Action<ExamResult>(this.detach_ExamResults));
-			this._QuestionAnswers = new EntitySet<QuestionAnswer>(new Action<QuestionAnswer>(this.attach_QuestionAnswers), new Action<QuestionAnswer>(this.detach_QuestionAnswers));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ExamId
-		{
-			get
-			{
-				return this._ExamId;
-			}
-			set
-			{
-				if ((this._ExamId != value))
-				{
-					this.OnExamIdChanging(value);
-					this.SendPropertyChanging();
-					this._ExamId = value;
-					this.SendPropertyChanged("ExamId");
-					this.OnExamIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="NVarChar(MAX)")]
-		public string Instructions
-		{
-			get
-			{
-				return this._Instructions;
-			}
-			set
-			{
-				if ((this._Instructions != value))
-				{
-					this.OnInstructionsChanging(value);
-					this.SendPropertyChanging();
-					this._Instructions = value;
-					this.SendPropertyChanged("Instructions");
-					this.OnInstructionsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Bit NOT NULL")]
-		public bool Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_ExamQuestions", ThisKey="ExamId", OtherKey="ExamId")]
-		public EntitySet<ExamQuestion> ExamQuestions
-		{
-			get
-			{
-				return this._ExamQuestions;
-			}
-			set
-			{
-				this._ExamQuestions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamResult", Storage="_ExamResults", ThisKey="ExamId", OtherKey="ExamId")]
-		public EntitySet<ExamResult> ExamResults
-		{
-			get
-			{
-				return this._ExamResults;
-			}
-			set
-			{
-				this._ExamResults.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_QuestionAnswer", Storage="_QuestionAnswers", ThisKey="ExamId", OtherKey="ExamId")]
-		public EntitySet<QuestionAnswer> QuestionAnswers
-		{
-			get
-			{
-				return this._QuestionAnswers;
-			}
-			set
-			{
-				this._QuestionAnswers.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ExamQuestions(ExamQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = this;
-		}
-		
-		private void detach_ExamQuestions(ExamQuestion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = null;
-		}
-		
-		private void attach_ExamResults(ExamResult entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = this;
-		}
-		
-		private void detach_ExamResults(ExamResult entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = null;
-		}
-		
-		private void attach_QuestionAnswers(QuestionAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = this;
-		}
-		
-		private void detach_QuestionAnswers(QuestionAnswer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Exam = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ExamQuestions")]
 	public partial class ExamQuestion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -819,9 +601,9 @@ namespace JoanCEdwards.DAO
 		
 		private int _SortOrder;
 		
-		private EntityRef<Exam> _Exam;
-		
 		private EntityRef<Question> _Question;
+		
+		private EntityRef<Exam> _Exam;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -837,8 +619,8 @@ namespace JoanCEdwards.DAO
 		
 		public ExamQuestion()
 		{
-			this._Exam = default(EntityRef<Exam>);
 			this._Question = default(EntityRef<Question>);
+			this._Exam = default(EntityRef<Exam>);
 			OnCreated();
 		}
 		
@@ -910,40 +692,6 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
-		public Exam Exam
-		{
-			get
-			{
-				return this._Exam.Entity;
-			}
-			set
-			{
-				Exam previousValue = this._Exam.Entity;
-				if (((previousValue != value) 
-							|| (this._Exam.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Exam.Entity = null;
-						previousValue.ExamQuestions.Remove(this);
-					}
-					this._Exam.Entity = value;
-					if ((value != null))
-					{
-						value.ExamQuestions.Add(this);
-						this._ExamId = value.ExamId;
-					}
-					else
-					{
-						this._ExamId = default(int);
-					}
-					this.SendPropertyChanged("Exam");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_ExamQuestion", Storage="_Question", ThisKey="QuestionId", OtherKey="QuestionId", IsForeignKey=true)]
 		public Question Question
 		{
@@ -974,6 +722,40 @@ namespace JoanCEdwards.DAO
 						this._QuestionId = default(int);
 					}
 					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.ExamQuestions.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.ExamQuestions.Add(this);
+						this._ExamId = value.ExamId;
+					}
+					else
+					{
+						this._ExamId = default(int);
+					}
+					this.SendPropertyChanged("Exam");
 				}
 			}
 		}
@@ -1425,9 +1207,9 @@ namespace JoanCEdwards.DAO
 		
 		private System.Nullable<int> _MaxScore;
 		
-		private EntityRef<Exam> _Exam;
-		
 		private EntityRef<UserProfile> _UserProfile;
+		
+		private EntityRef<Exam> _Exam;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1447,8 +1229,8 @@ namespace JoanCEdwards.DAO
 		
 		public ExamResult()
 		{
-			this._Exam = default(EntityRef<Exam>);
 			this._UserProfile = default(EntityRef<UserProfile>);
+			this._Exam = default(EntityRef<Exam>);
 			OnCreated();
 		}
 		
@@ -1560,40 +1342,6 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamResult", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
-		public Exam Exam
-		{
-			get
-			{
-				return this._Exam.Entity;
-			}
-			set
-			{
-				Exam previousValue = this._Exam.Entity;
-				if (((previousValue != value) 
-							|| (this._Exam.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Exam.Entity = null;
-						previousValue.ExamResults.Remove(this);
-					}
-					this._Exam.Entity = value;
-					if ((value != null))
-					{
-						value.ExamResults.Add(this);
-						this._ExamId = value.ExamId;
-					}
-					else
-					{
-						this._ExamId = default(int);
-					}
-					this.SendPropertyChanged("Exam");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserProfile_ExamResult", Storage="_UserProfile", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
 		public UserProfile UserProfile
 		{
@@ -1628,6 +1376,40 @@ namespace JoanCEdwards.DAO
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamResult", Storage="_Exam", ThisKey="ExamId", OtherKey="ExamId", IsForeignKey=true)]
+		public Exam Exam
+		{
+			get
+			{
+				return this._Exam.Entity;
+			}
+			set
+			{
+				Exam previousValue = this._Exam.Entity;
+				if (((previousValue != value) 
+							|| (this._Exam.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Exam.Entity = null;
+						previousValue.ExamResults.Remove(this);
+					}
+					this._Exam.Entity = value;
+					if ((value != null))
+					{
+						value.ExamResults.Add(this);
+						this._ExamId = value.ExamId;
+					}
+					else
+					{
+						this._ExamId = default(int);
+					}
+					this.SendPropertyChanged("Exam");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1649,6 +1431,248 @@ namespace JoanCEdwards.DAO
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Exam")]
+	public partial class Exam : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ExamId;
+		
+		private string _Title;
+		
+		private string _Instructions;
+		
+		private bool _Status;
+		
+		private System.Nullable<int> _Value;
+		
+		private EntitySet<ExamQuestion> _ExamQuestions;
+		
+		private EntitySet<ExamResult> _ExamResults;
+		
+		private EntitySet<QuestionAnswer> _QuestionAnswers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamIdChanging(int value);
+    partial void OnExamIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnInstructionsChanging(string value);
+    partial void OnInstructionsChanged();
+    partial void OnStatusChanging(bool value);
+    partial void OnStatusChanged();
+    partial void OnValueChanging(System.Nullable<int> value);
+    partial void OnValueChanged();
+    #endregion
+		
+		public Exam()
+		{
+			this._ExamQuestions = new EntitySet<ExamQuestion>(new Action<ExamQuestion>(this.attach_ExamQuestions), new Action<ExamQuestion>(this.detach_ExamQuestions));
+			this._ExamResults = new EntitySet<ExamResult>(new Action<ExamResult>(this.attach_ExamResults), new Action<ExamResult>(this.detach_ExamResults));
+			this._QuestionAnswers = new EntitySet<QuestionAnswer>(new Action<QuestionAnswer>(this.attach_QuestionAnswers), new Action<QuestionAnswer>(this.detach_QuestionAnswers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ExamId
+		{
+			get
+			{
+				return this._ExamId;
+			}
+			set
+			{
+				if ((this._ExamId != value))
+				{
+					this.OnExamIdChanging(value);
+					this.SendPropertyChanging();
+					this._ExamId = value;
+					this.SendPropertyChanged("ExamId");
+					this.OnExamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="NVarChar(MAX)")]
+		public string Instructions
+		{
+			get
+			{
+				return this._Instructions;
+			}
+			set
+			{
+				if ((this._Instructions != value))
+				{
+					this.OnInstructionsChanging(value);
+					this.SendPropertyChanging();
+					this._Instructions = value;
+					this.SendPropertyChanged("Instructions");
+					this.OnInstructionsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Bit NOT NULL")]
+		public bool Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Int")]
+		public System.Nullable<int> Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamQuestion", Storage="_ExamQuestions", ThisKey="ExamId", OtherKey="ExamId")]
+		public EntitySet<ExamQuestion> ExamQuestions
+		{
+			get
+			{
+				return this._ExamQuestions;
+			}
+			set
+			{
+				this._ExamQuestions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_ExamResult", Storage="_ExamResults", ThisKey="ExamId", OtherKey="ExamId")]
+		public EntitySet<ExamResult> ExamResults
+		{
+			get
+			{
+				return this._ExamResults;
+			}
+			set
+			{
+				this._ExamResults.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Exam_QuestionAnswer", Storage="_QuestionAnswers", ThisKey="ExamId", OtherKey="ExamId")]
+		public EntitySet<QuestionAnswer> QuestionAnswers
+		{
+			get
+			{
+				return this._QuestionAnswers;
+			}
+			set
+			{
+				this._QuestionAnswers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = this;
+		}
+		
+		private void detach_ExamQuestions(ExamQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = null;
+		}
+		
+		private void attach_ExamResults(ExamResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = this;
+		}
+		
+		private void detach_ExamResults(ExamResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = null;
+		}
+		
+		private void attach_QuestionAnswers(QuestionAnswer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = this;
+		}
+		
+		private void detach_QuestionAnswers(QuestionAnswer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Exam = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestionAnswer")]
 	public partial class QuestionAnswer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1662,6 +1686,8 @@ namespace JoanCEdwards.DAO
 		private string _Answer;
 		
 		private int _ExamId;
+		
+		private System.Nullable<int> _Score;
 		
 		private EntityRef<Exam> _Exam;
 		
@@ -1681,6 +1707,8 @@ namespace JoanCEdwards.DAO
     partial void OnAnswerChanged();
     partial void OnExamIdChanging(int value);
     partial void OnExamIdChanged();
+    partial void OnScoreChanging(System.Nullable<int> value);
+    partial void OnScoreChanged();
     #endregion
 		
 		public QuestionAnswer()
@@ -1779,6 +1807,26 @@ namespace JoanCEdwards.DAO
 					this._ExamId = value;
 					this.SendPropertyChanged("ExamId");
 					this.OnExamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Score", DbType="Int")]
+		public System.Nullable<int> Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
 				}
 			}
 		}

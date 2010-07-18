@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoanCEdwards.DAO.Tests", "J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoanCEdwards.ExamProcessing.Tests", "JoanCEdwards.ExamProcessing.Tests\JoanCEdwards.ExamProcessing.Tests.csproj", "{206AA2B1-74A1-4E46-83C6-7B1C2DE60616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamApplication", "ExamApplication\ExamApplication.csproj", "{C7158730-D03B-4E82-9380-65539AA93BBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamWeb", "ExamWeb\ExamWeb.csproj", "{C7158730-D03B-4E82-9380-65539AA93BBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoanCEdwards.ExamLibrary", "JoanCEdwards.ExamLibrary\JoanCEdwards.ExamLibrary.csproj", "{99F9FEC5-ABEF-4E38-BAE5-3BF364F3645A}"
 EndProject

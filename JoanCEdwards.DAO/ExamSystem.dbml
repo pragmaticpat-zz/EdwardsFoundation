@@ -22,24 +22,13 @@
       <Association Name="UserProfile_QuestionAnswer" Member="QuestionAnswers" ThisKey="UserId" OtherKey="UserId" Type="QuestionAnswer" />
     </Type>
   </Table>
-  <Table Name="dbo.Exam" Member="Exams">
-    <Type Name="Exam">
-      <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Instructions" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Exam_ExamQuestion" Member="ExamQuestions" ThisKey="ExamId" OtherKey="ExamId" Type="ExamQuestion" />
-      <Association Name="Exam_ExamResult" Member="ExamResults" ThisKey="ExamId" OtherKey="ExamId" Type="ExamResult" />
-      <Association Name="Exam_QuestionAnswer" Member="QuestionAnswers" ThisKey="ExamId" OtherKey="ExamId" Type="QuestionAnswer" />
-    </Type>
-  </Table>
   <Table Name="dbo.ExamQuestions" Member="ExamQuestions">
     <Type Name="ExamQuestion">
       <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Exam_ExamQuestion" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
       <Association Name="Question_ExamQuestion" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
+      <Association Name="Exam_ExamQuestion" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Question" Member="Questions">
@@ -69,8 +58,20 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UserScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaxScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Exam_ExamResult" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
       <Association Name="UserProfile_ExamResult" Member="UserProfile" ThisKey="UserId" OtherKey="UserId" Type="UserProfile" IsForeignKey="true" />
+      <Association Name="Exam_ExamResult" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Exam" Member="Exams">
+    <Type Name="Exam">
+      <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Instructions" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Exam_ExamQuestion" Member="ExamQuestions" ThisKey="ExamId" OtherKey="ExamId" Type="ExamQuestion" />
+      <Association Name="Exam_ExamResult" Member="ExamResults" ThisKey="ExamId" OtherKey="ExamId" Type="ExamResult" />
+      <Association Name="Exam_QuestionAnswer" Member="QuestionAnswers" ThisKey="ExamId" OtherKey="ExamId" Type="QuestionAnswer" />
     </Type>
   </Table>
   <Table Name="dbo.QuestionAnswer" Member="QuestionAnswers">
@@ -79,6 +80,7 @@
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Answer" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Score" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Exam_QuestionAnswer" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
       <Association Name="Question_QuestionAnswer" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
       <Association Name="UserProfile_QuestionAnswer" Member="UserProfile" ThisKey="UserId" OtherKey="UserId" Type="UserProfile" IsForeignKey="true" />
