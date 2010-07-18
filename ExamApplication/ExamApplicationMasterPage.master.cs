@@ -17,8 +17,36 @@ namespace ExamApplication
         {
             if (!HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                this.linkButtonLogOut.Visible = false;
+                //this.linkButtonLogOut.Visible = false;
+                panelMenu.Visible = false;
             }
+            else
+            {
+                panelMenu.Visible = true;
+            }
+        }
+
+        protected void menuLinkButton_Click(object sender, EventArgs e)
+        {
+            string redirectUrl = "";
+            switch (((Control)sender).ID)
+            {
+                case "Home":
+                    redirectUrl = "~/";
+                    break;
+                case "Exams":
+                    redirectUrl = "~/Exam.aspx";
+                    break;
+                case "ManageUsers":
+                    redirectUrl = "~/Admin/SearchUser.aspx";
+                    break;
+                case "ManageExams":
+                    redirectUrl = "";
+                    break;
+                default:
+                    break;
+            }
+            Response.Redirect(redirectUrl);
         }
 
         protected void linkButtonLogOut_Click(object sender, EventArgs e)

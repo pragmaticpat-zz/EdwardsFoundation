@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonUserProfile.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationException.cs" />
     <Compile Include="ExamFactory.cs" />
