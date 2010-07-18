@@ -31,6 +31,36 @@ namespace JoanCEdwards.DAO.Tests
         }
 
         [Test]
+        public void Given_that_that_the_user_has_answered_the_question_the_scorer_should_be_able_to_assign_a_score_of_80_points()
+        {
+            // Context
+
+            var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
+            db.Exams.InsertOnSubmit(exam);
+            var question = new Question() { QuestionCategory = "label", QuestionText = "here is the question text", QuestionType = "M" };
+            db.Questions.InsertOnSubmit(question);
+            var expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S', Password = new string('p', 300) };
+            db.UserProfiles.InsertOnSubmit(expectedProfile);
+            question.QuestionAnswers.Add(new QuestionAnswer() { Question = question, Exam = exam, UserProfile = expectedProfile, Answer = "answer" });
+            exam.ExamQuestions.Add(new ExamQuestion() { Exam = exam, Question = question, SortOrder = 1 });
+            db.SubmitChanges();
+
+            var actualQuestion = (from e in db.Questions
+                                  where e.QuestionId == question.QuestionId
+                                  select e).First();
+
+            var answer = actualQuestion.QuestionAnswers.First();
+            answer.Score = 80;
+            answer.ScorerId = expectedProfile.UserId;
+            answer.Comments = "Good attempt";
+            db.SubmitChanges();
+
+            //Confirmation
+
+
+        }
+
+        [Test]
         public void Question_HasMultipleAnswerers()
         {
             var question = new Question() { QuestionText = "Text", QuestionType = "M", QuestionCategory = "Category" };

@@ -12,7 +12,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void Exam_WhenCreated_ThereIsOneExamInTheTable()
         {
-            var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
+            var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title", Value = 100 };
             db.Exams.InsertOnSubmit(exam);
             db.SubmitChanges();
             Assert.AreEqual(1, db.Exams.Count());
@@ -21,7 +21,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void Exam_WhenDeleted_StatusIsFalse()
         {
-            Exam exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
+            Exam exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title", Value = 100 };
             db.Exams.InsertOnSubmit(exam);
             db.SubmitChanges();
             db.DeleteExam(exam.ExamId);
