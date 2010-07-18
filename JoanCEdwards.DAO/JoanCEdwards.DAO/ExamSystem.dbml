@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EdwardsFoundation" Class="ExamSystemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Dev\EdwardsFoundation\EdwardsFoundation.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="JoanCEdwards.DAO.Properties.Settings" SettingsPropertyName="EdwardsFoundationConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Choice" Member="Choices">
+    <Type Name="Choice">
+      <Column Name="ChoiceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Choice_QuestionChoice" Member="QuestionChoices" ThisKey="ChoiceId" OtherKey="ChoiceId" Type="QuestionChoice" />
+    </Type>
+  </Table>
   <Table Name="dbo.UserProfile" Member="UserProfiles">
     <Type Name="UserProfile">
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -21,12 +29,13 @@
       <Association Name="Exam_ExamQuestion" Member="ExamQuestions" ThisKey="ExamId" OtherKey="ExamId" Type="ExamQuestion" />
     </Type>
   </Table>
-  <Table Name="dbo.Choice" Member="Choices">
-    <Type Name="Choice">
-      <Column Name="ChoiceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Label" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Value" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Choice_QuestionChoice" Member="QuestionChoices" ThisKey="ChoiceId" OtherKey="ChoiceId" Type="QuestionChoice" />
+  <Table Name="dbo.ExamQuestions" Member="ExamQuestions">
+    <Type Name="ExamQuestion">
+      <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Exam_ExamQuestion" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
+      <Association Name="Question_ExamQuestion" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Question" Member="Questions">
@@ -37,15 +46,6 @@
       <Column Name="QuestionText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Question_ExamQuestion" Member="ExamQuestions" ThisKey="QuestionId" OtherKey="QuestionId" Type="ExamQuestion" />
       <Association Name="Question_QuestionChoice" Member="QuestionChoices" ThisKey="QuestionId" OtherKey="QuestionId" Type="QuestionChoice" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ExamQuestions" Member="ExamQuestions">
-    <Type Name="ExamQuestion">
-      <Column Name="ExamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SortOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Exam_ExamQuestion" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
-      <Association Name="Question_ExamQuestion" Member="Question" ThisKey="QuestionId" OtherKey="QuestionId" Type="Question" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.QuestionChoice" Member="QuestionChoices">

@@ -40,7 +40,6 @@ namespace JoanCEdwards.DAO.Tests
         public void Question_CanHaveMultipleChoices()
         {
             
-            Assert.AreEqual(5, question.QuestionChoices.Count);
         }
 
         [TearDown]
