@@ -13,8 +13,11 @@ namespace JoanCEdwards.DAO.Tests
         public void Exam_WhenCreated_ThereIsOneExamInTheTable()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title", Value = 100 };
 =======
+=======
+>>>>>>> c1cf1ab570cae6af2ee1923b7b68c9ee7ab08501
             CreateDefaultExam();
             Assert.AreEqual(1, db.Exams.Count());
         }
