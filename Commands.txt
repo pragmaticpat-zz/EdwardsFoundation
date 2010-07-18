@@ -1,0 +1,1 @@
+xsd.exe C:\dev.net\JoanCEdwards\JoanCEdwards.ExamLibrary\Exam.xsd /classes /language:CS /namespace:JoanCEdwards.ExamLibrary /outputdir:C:\dev.net\JoanCEdwards\JoanCEdwards.ExamLibrary

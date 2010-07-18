@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="Exam"
+                  targetNamespace="http://h3p.org/Exam.xsd"
+                  elementFormDefault="qualified"
+                  xmlns="http://h3p.org/Exam.xsd"
+                  xmlns:mstns="http://h3p.org/Exam.xsd"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Exam" type="Exam" />
+
+	<xs:complexType name="Exam">
+		<xs:sequence>
+			<xs:element name="Title" type="xs:string" />
+			<xs:element name="Instructions" type="xs:string" />
+			<xs:element name="Sections" type="Section" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Section">
+		<xs:sequence>
+			<xs:element name="Questions" type="Question" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="JunkPlaceHolder" type="xs:string" />
+	</xs:complexType>
+	
+	<xs:complexType name="Question">
+		<xs:sequence>
+			<xs:element name="QuestionText" type="xs:string" />
+			<xs:element name="Options" type="Option" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Type" type="xs:string" />
+		<xs:attribute name="Id" type="xs:integer" />
+	</xs:complexType>
+
+	<xs:complexType name="Option">
+		<xs:sequence>
+			<xs:element name="OptionText" type="xs:string" minOccurs="0" />
+			<xs:element name="PointValue" type="xs:integer" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="QuestionTypes">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MultipleChoice" />
+			<xs:enumeration value="TextAnswer" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

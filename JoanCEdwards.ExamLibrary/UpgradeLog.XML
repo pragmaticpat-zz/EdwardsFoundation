@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="JoanCEdwards.ExamLibrary">
+</Property><Property Name="Solution File" Value="C:\dev.net\JoanCEdwards\JoanCEdwards.ExamLibrary\JoanCEdwards.ExamLibrary.sln">
+</Property><Property Name="Date" Value="Saturday, July 17, 2010">
+</Property><Property Name="Time" Value="14:14 PM">
+</Property></Properties><Event ErrorLevel="0" Project="JoanCEdwards.ExamLibrary" Source="JoanCEdwards.ExamLibrary.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="JoanCEdwards.ExamLibrary" Source="JoanCEdwards.ExamLibrary.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="ExamApplication" Source="..\ExamApplication\ExamApplication.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="ExamApplication" Source="..\ExamApplication\ExamApplication.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SuveryWebControls" Source="..\SuveryWebControls\SuveryWebControls.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SuveryWebControls" Source="..\SuveryWebControls\SuveryWebControls.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="JoanCEdwards.ExamLibrary.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="JoanCEdwards.ExamLibrary.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="JoanCEdwards.ExamLibrary" Source="JoanCEdwards.ExamLibrary.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="ExamApplication" Source="..\ExamApplication\ExamApplication.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event><Event ErrorLevel="0" Project="SuveryWebControls" Source="..\SuveryWebControls\SuveryWebControls.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

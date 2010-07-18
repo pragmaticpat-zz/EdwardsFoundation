@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<Exam xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://h3p.org/Exam.xsd">
+	<Title>Exam Title Here</Title>
+	<Instructions>Instruction:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id tortor magna. Etiam ac nibh dolor, eu pellentesque quam. Sed ultrices aliquet velit, eu gravida nunc sollicitudin ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer a mi ac ante faucibus cursus. Donec enim lectus, auctor nec dignissim ut, congue non purus. Mauris et lectus ornare quam bibendum venenatis. Cras ultricies ornare enim sit amet commodo. Nulla lectus elit, placerat vel ultrices vitae, tincidunt eget nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer id justo erat, vitae auctor augue. Aenean venenatis tincidunt eros in consequat. Aenean facilisis sollicitudin nulla in consequat. Aliquam ac nisi nunc. Vestibulum lacinia, nibh ut venenatis viverra, ligula dolor condimentum nunc, ut auctor libero nibh a felis. Duis mattis ipsum vitae nibh malesuada nec rutrum nibh pulvinar. Vivamus eu enim sollicitudin est luctus tincidunt. Sed a nisi massa, dapibus commodo urna.  </Instructions>
+	<Sections>
+		<Questions Id="1" Type="MultipleChoice">
+			<QuestionText>Please answer Question 1 whish is multiples choice.</QuestionText>
+			<Options>
+				<OptionText>Answer 1</OptionText>
+				<PointValue>0</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 2</OptionText>
+				<PointValue>0</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 3</OptionText>
+				<PointValue>0</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 4</OptionText>
+				<PointValue>1</PointValue>
+			</Options>
+		</Questions>
+		<Questions Id="2" Type="MultipleChoice">
+			<QuestionText>Please answer Question 2 whish is multiple choice.</QuestionText>
+			<Options>
+				<OptionText>Answer 1</OptionText>
+				<PointValue>1</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 2</OptionText>
+				<PointValue>2</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 3</OptionText>
+				<PointValue>3</PointValue>
+			</Options>
+			<Options>
+				<OptionText>Answer 4</OptionText>
+				<PointValue>4</PointValue>
+			</Options>
+		</Questions>
+		<Questions Id="3" Type="ShortAnswer">
+			<QuestionText>Please answer this short answer Question.</QuestionText>
+			<Options>
+				<PointValue>4</PointValue>
+			</Options>
+		</Questions>
+	</Sections>
+</Exam>

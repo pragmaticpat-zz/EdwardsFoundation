@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+<title>
+	Login
+</title></head><body>
+    <form name="aspnetForm" method="post" action="login.aspx" 
+onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm">
+<div>
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" 
+type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" 
+value="/wEPDwULLTEzNDY0MDU2OTQPZBYCZg9kFgICAw9kFgQCAw8PFgIeB1Zpc2libGVoZGQCBQ9kFgICAw88KwAKAQAPFgYeEVBhc3N3b3JkTGFiZWxUZXh0BQhQYXNzd29yZB4RVXNlck5hbWVMYWJlbFRleHQFDUVtYWlsIEFkZHJlc3MeFFBhc3N3b3JkUmVjb3ZlcnlUZXh0BQ9Gb3Jnb3QgUGFzc3dvcmRkZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAgUlY3RsMDAkQ29udGVudCRsb2dpbkNvbnRyb2wkUmVtZW1iZXJNZQUrY3RsMDAkQ29udGVudCRsb2dpbkNvbnRyb2wkTG9naW5JbWFnZUJ1dHRvboJMDGE3A0xtGCfioW4y7RVOvW7D"
+ type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="login.aspx_files/WebResource.js" type="text/javascript"></script>
+
+
+<script src="login.aspx_files/WebResource_002.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div>
+
+	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" 
+value="/wEWBQKEuJqsDwKP2uI6Aun+kPwBApab2MgEAvHajO4PFcIw4H7+0PwW38WjIb/OBM8knTU="
+ type="hidden">
+</div>
+    <div id="header">Header stuff can be placed here</div>
+    <div id="ctl00_panelMenu">
+
+</div>
+    <div>
+        
+        
+        <span id="ctl00_Content_labelError"></span>
+        <table id="ctl00_Content_loginControl" style="border-collapse: 
+collapse;" border="0" cellpadding="1" cellspacing="0">
+	<tbody><tr>
+		<td><table border="0" cellpadding="0">
+			<tbody><tr>
+				<td colspan="2" align="center">Log In</td>
+			</tr><tr>
+				<td align="right"><label for="ctl00_Content_loginControl_UserName">Email
+ Address</label></td><td><input 
+name="ctl00$Content$loginControl$UserName" 
+id="ctl00_Content_loginControl_UserName" type="text"><span 
+id="ctl00_Content_loginControl_UserNameRequired" title="User Name is 
+required." style="color: Red; visibility: hidden;">*</span></td>
+			</tr><tr>
+				<td align="right"><label for="ctl00_Content_loginControl_Password">Password</label></td><td><input
+ name="ctl00$Content$loginControl$Password" 
+id="ctl00_Content_loginControl_Password" type="password"><span 
+id="ctl00_Content_loginControl_PasswordRequired" title="Password is 
+required." style="color: Red; visibility: hidden;">*</span></td>
+			</tr><tr>
+				<td colspan="2"><input id="ctl00_Content_loginControl_RememberMe" 
+name="ctl00$Content$loginControl$RememberMe" type="checkbox"><label 
+for="ctl00_Content_loginControl_RememberMe">Remember me next time.</label></td>
+			</tr><tr>
+				<td colspan="2" align="right"><input 
+name="ctl00$Content$loginControl$LoginButton" value="Log In" 
+onclick='javascript:WebForm_DoPostBackWithOptions(new 
+WebForm_PostBackOptions("ctl00$Content$loginControl$LoginButton", "", 
+true, "ctl00$Content$loginControl", "", false, false))' 
+id="ctl00_Content_loginControl_LoginButton" type="submit"></td>
+			</tr><tr>
+				<td colspan="2"><a 
+id="ctl00_Content_loginControl_PasswordRecoveryLink" 
+href="http://localhost:50363/public/forgotpassword.aspx">Forgot Password</a></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table>
+
+    </div>
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_Content_loginControl_UserNameRequired"), document.getElementById("ctl00_Content_loginControl_PasswordRequired"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var ctl00_Content_loginControl_UserNameRequired = document.all ? document.all["ctl00_Content_loginControl_UserNameRequired"] : document.getElementById("ctl00_Content_loginControl_UserNameRequired");
+ctl00_Content_loginControl_UserNameRequired.controltovalidate = "ctl00_Content_loginControl_UserName";
+ctl00_Content_loginControl_UserNameRequired.errormessage = "User Name is required.";
+ctl00_Content_loginControl_UserNameRequired.validationGroup = "ctl00$Content$loginControl";
+ctl00_Content_loginControl_UserNameRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_Content_loginControl_UserNameRequired.initialvalue = "";
+var ctl00_Content_loginControl_PasswordRequired = document.all ? document.all["ctl00_Content_loginControl_PasswordRequired"] : document.getElementById("ctl00_Content_loginControl_PasswordRequired");
+ctl00_Content_loginControl_PasswordRequired.controltovalidate = "ctl00_Content_loginControl_Password";
+ctl00_Content_loginControl_PasswordRequired.errormessage = "Password is required.";
+ctl00_Content_loginControl_PasswordRequired.validationGroup = "ctl00$Content$loginControl";
+ctl00_Content_loginControl_PasswordRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_Content_loginControl_PasswordRequired.initialvalue = "";
+//]]>
+</script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        //]]>
+</script>
+</form>
+    
+</body><script id="afterthedeadline-dispatchDisable">if (window.setTimeout) window.setTimeout(function(){if ("AtD" in window || "AtDCore" in window) {document.AtDdisabled = true; var ev = document.createEvent("HTMLEvents");ev.initEvent("disableAtD",true,false);document.dispatchEvent(ev);}},100);</script></html>
