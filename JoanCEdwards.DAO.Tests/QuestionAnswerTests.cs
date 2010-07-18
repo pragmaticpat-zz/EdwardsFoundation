@@ -29,5 +29,25 @@ namespace JoanCEdwards.DAO.Tests
             Assert.AreEqual(1, actualQuestion.QuestionAnswers.Count);
 
         }
+
+        [Test]
+        public void Question_HasMultipleAnswerers()
+        {
+            var question = new Question() { QuestionText = "Text", QuestionType = "M", QuestionCategory = "Category" };
+            var exam = new Exam() { Instructions = "instructions", Title = "title", Status = true };
+            var userProfile = new UserProfile() { EmailAddress = "email", FirstName = "first", LastName = "last", GradeLevel = "5", Password = "pass", UserType = 'S', Status = true };
+            var userProfile2 = new UserProfile() { EmailAddress = "email2", FirstName = "first", LastName = "last", GradeLevel = "5", Password = "pass", UserType = 'S', Status = true };
+            var questionAnswer = new QuestionAnswer() { Question = question, Answer = "answer", Exam = exam, UserProfile = userProfile };
+            var questionAnswer2 = new QuestionAnswer() { Question = question, Answer = "answer", Exam = exam, UserProfile = userProfile2 };
+            question.QuestionAnswers.Add(questionAnswer);
+            question.QuestionAnswers.Add(questionAnswer2);
+            db.Questions.InsertOnSubmit(question);
+            db.Exams.InsertOnSubmit(exam);
+            db.UserProfiles.InsertAllOnSubmit(new List<UserProfile>() { userProfile, userProfile2 });
+            db.QuestionAnswers.InsertAllOnSubmit(new List<QuestionAnswer>() { questionAnswer, questionAnswer2 });
+            db.SubmitChanges();
+            var actualQuestionAnswers = (from qa in db.QuestionAnswers where qa.QuestionId == question.QuestionId && qa.ExamId == exam.ExamId select qa).ToList();
+            Assert.AreEqual(2, actualQuestionAnswers.Count);
+        }
     }
 }
