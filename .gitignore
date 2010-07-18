@@ -4,8 +4,6 @@
 
 */debug/*
 
-*.LDF
-
 JoanCEdwards.DAO/JoanCEdwards.DAO.Tests/bin/*
 
 JoanCEdwards.DAO/JoanCEdwards.DAO.Tests/obj/*
