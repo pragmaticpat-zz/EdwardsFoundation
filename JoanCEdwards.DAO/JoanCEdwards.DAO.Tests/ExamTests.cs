@@ -10,7 +10,7 @@ namespace JoanCEdwards.DAO.Tests
     public class ExamTests : DataAccessTestBase
     {
         [Test]
-        public void Exam_WhenCreated_HasAnID()
+        public void Exam_WhenCreated_ThereIsOneExamInTheTable()
         {
             var exam = new Exam() { Instructions = new string('a', 3500), Title = "here is the title" };
             db.Exams.InsertOnSubmit(exam);

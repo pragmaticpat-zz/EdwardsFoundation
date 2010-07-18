@@ -11,7 +11,7 @@ namespace JoanCEdwards.DAO.Tests
     public class QuestionTests : DataAccessTestBase
     {
         [Test]
-        public void Question_WhenCreated_HasId()
+        public void Question_WhenCreated_ThereIsOneQuestionInTheTable()
         {
             var question = new Question() { QuestionCategory = "category", QuestionText = "here is the question text", QuestionType = "M" };
             db.Questions.InsertOnSubmit(question);

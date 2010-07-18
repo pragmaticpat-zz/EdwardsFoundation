@@ -10,12 +10,12 @@ namespace JoanCEdwards.DAO.Tests
     public class ChoiceTests : DataAccessTestBase
     {
         [Test]
-        public void Choice_WhenCreated_HasId()
+        public void Choice_WhenCreated_OneChoiceInTheTable()
         {
             var choice = new Choice() { Label = "label", Value  = 10};
             db.Choices.InsertOnSubmit(choice);
             db.SubmitChanges();
-            Assert.Greater(choice.ChoiceId, 0);
+            Assert.AreEqual(1, db.Choices.Count());
         }
     }
 }

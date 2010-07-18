@@ -14,7 +14,7 @@ namespace JoanCEdwards.DAO.Tests
         UserProfile actualProfile;
 
         [Test]
-        public void UserProfile_WhenStored_ReturnsId()
+        public void UserProfile_WhenStored_OnlyOneInTheTable()
         {
             StoreExpectedProfile();
             Assert.AreEqual(1, db.UserProfiles.Count());
@@ -34,7 +34,7 @@ namespace JoanCEdwards.DAO.Tests
         [Test]
         public void UserProfile_WhenAddingMultiple_IsTheRightSize()
         {
-            for (int i = 0; i < 5; i++) //one done in setup
+            for (int i = 0; i < 5; i++)
             {
                 expectedProfile = new UserProfile() { EmailAddress = "email"+i, FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
                 db.UserProfiles.InsertOnSubmit(expectedProfile);
