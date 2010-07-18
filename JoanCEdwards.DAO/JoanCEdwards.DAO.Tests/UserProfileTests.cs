@@ -25,9 +25,7 @@ namespace JoanCEdwards.DAO.Tests
         {
             StoreExpectedProfile();
             db.DeleteUser(expectedProfile.UserId);
-            actualProfile = (from p in db.UserProfiles
-                             where p.UserId == expectedProfile.UserId
-                             select p).First();
+            actualProfile = (from p in db.UserProfiles where p.UserId == expectedProfile.UserId select p).First();
             Assert.AreEqual(false, actualProfile.Status);
         }
 
@@ -36,7 +34,7 @@ namespace JoanCEdwards.DAO.Tests
         {
             for (int i = 0; i < 5; i++)
             {
-                expectedProfile = new UserProfile() { EmailAddress = "email"+i, FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
+                expectedProfile = new UserProfile() { EmailAddress = "email" + i, FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S' };
                 db.UserProfiles.InsertOnSubmit(expectedProfile);
                 db.SubmitChanges();
             }

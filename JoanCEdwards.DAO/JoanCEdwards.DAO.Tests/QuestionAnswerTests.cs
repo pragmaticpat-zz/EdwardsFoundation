@@ -19,7 +19,6 @@ namespace JoanCEdwards.DAO.Tests
             db.Questions.InsertOnSubmit(question);
             var expectedProfile = new UserProfile() { EmailAddress = "email", FirstName = "name", LastName = "lname", GradeLevel = "5", UserType = 'S', Password = new string('p', 300) };
             db.UserProfiles.InsertOnSubmit(expectedProfile);
-            db.SubmitChanges();
             exam.ExamQuestions.Add(new ExamQuestion() { Exam = exam, Question = question, SortOrder = 1 });
             question.QuestionAnswers.Add(new QuestionAnswer() { Question = question, Exam = exam, UserProfile = expectedProfile, Answer = "answer" });
             db.SubmitChanges();
